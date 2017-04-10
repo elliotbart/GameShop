@@ -1,0 +1,6 @@
+*.class
+.tern-project
+.settings
+.classpath
+.project
+README.md

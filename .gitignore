@@ -3,7 +3,10 @@
 .settings
 .classpath
 .project
+*.jar
 README.md
+/build/
 src/dao/ConnexionBDD.java
+WebContent/WEB-INF/lib/postgresql-42.0.0.jar
 WebContent/WEB-INF/lib/mysql-connector-java-5.1.41-bin.jar
-src/dao/ConnexionBDD.java
+WebContent/WEB-INF/lib/postgresql-42.0.0.jar

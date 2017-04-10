@@ -1,7 +1,6 @@
 *.class
+.tern-project
 .settings
-build/*
 .classpath
 .project
 README.md
-bin/*

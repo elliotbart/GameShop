@@ -7,7 +7,7 @@ import java.util.List;
 public class Commande implements Serializable{
 
 	private List<LigneCommande> lignes;
-
+ 
 	/**
 	 * 
 	 */

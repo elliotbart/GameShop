@@ -3,7 +3,11 @@
 .settings
 .classpath
 .project
+<<<<<<< HEAD
 *.jar
+=======
+*.jar
+>>>>>>> af19beb19eb9227d98438c4f112606ac40441b4e
 README.md
 /build/
 src/dao/ConnexionBDD.java

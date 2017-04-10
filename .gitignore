@@ -10,7 +10,14 @@
 >>>>>>> af19beb19eb9227d98438c4f112606ac40441b4e
 README.md
 /build/
+<<<<<<< HEAD
 src/dao/ConnexionBDD.java
 WebContent/WEB-INF/lib/postgresql-42.0.0.jar
 WebContent/WEB-INF/lib/mysql-connector-java-5.1.41-bin.jar
 WebContent/WEB-INF/lib/postgresql-42.0.0.jar
+=======
+
+src/dao/ConnexionBDD.java
+
+src/dao/ConnexionBDD.java
+>>>>>>> origin/master

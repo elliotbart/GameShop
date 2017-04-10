@@ -3,4 +3,7 @@
 .settings
 .classpath
 .project
+GestionBDD.java
+GestionBDD2.java
 README.md
+/build/

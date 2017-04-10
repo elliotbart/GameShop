@@ -8,3 +8,5 @@ GestionBDD2.java
 *.jar
 README.md
 /build/
+
+src/dao/ConnexionBDD.java

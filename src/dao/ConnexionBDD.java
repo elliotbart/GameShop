@@ -28,9 +28,9 @@ public final class ConnexionBDD {
 //			Class.forName(p.getProperty("driver"));
 //			cnx = DriverManager.getConnection(p.getProperty("url"),
 //					p.getProperty("user"), p.getProperty("pwd"));
-            Class.forName("org.postgresql.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Driver chargé");
-			cnx=DriverManager.getConnection("jdbc:postgresql://localhost:5432/videoGames", "pierrebathellier", "");			
+			cnx=DriverManager.getConnection("jdbc:mysql://localhost:3306/videoGames", "virgile", "");			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

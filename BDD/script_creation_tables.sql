@@ -7,7 +7,7 @@ CREATE TABLE CART (
 CREATE TABLE GAME (
 	pk_title VARCHAR(40),
 	price INT,
-	PRIMARY KEY pk_title
+	PRIMARY KEY (pk_title)
 );
 
 CREATE TABLE CONSOLE (
@@ -20,15 +20,15 @@ CREATE TABLE TYPE (
 	PRIMARY KEY (pk_type)
 );
 
-CREATE TABLE USER (
+CREATE TABLE CLIENT (
 	pk_email VARCHAR(40),
 	lastName VARCHAR(20) NOT NULL,
 	firstName VARCHAR(20) NOT NULL,
 	password VARCHAR(20) NOT NULL,
-	birthDate DATETIME NOT NULL,
+	birthDate DATE NOT NULL,
 	fk_cart INT,
 	FOREIGN KEY (fk_cart) REFERENCES CART(pk_id),
-	PRIMARY KEY (email)
+	PRIMARY KEY (pk_email)
 );
 
 CREATE TABLE GAME_TYPE (

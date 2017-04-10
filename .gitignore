@@ -1,0 +1,6 @@
+*.class
+.settings
+build/*
+.classpath
+.project
+README.md

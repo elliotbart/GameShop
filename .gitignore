@@ -4,7 +4,6 @@
 .classpath
 .project
 *.jar
-README.md
 src/dao/ConnexionBDD.java
 
 

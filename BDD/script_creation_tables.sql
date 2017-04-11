@@ -1,6 +1,5 @@
 CREATE TABLE CART (
 	pk_id INT,
-	price INT,
 	PRIMARY KEY (pk_id)
 );
 

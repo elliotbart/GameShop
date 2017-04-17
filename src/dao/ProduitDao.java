@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import beans.Produit;
-import beans.Utilisateur;
+import beans_old.Produit;
+import beans_old.Utilisateur;
 
 public class ProduitDao {
 

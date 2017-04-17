@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.NameComp;
-import beans.UsernameComp;
-import beans.Utilisateur;
-
+import beans_old.NameComp;
+import beans_old.UsernameComp;
+import beans_old.Utilisateur;
 import dao.UtilisateursDao;
 
 /**

@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Commande;
-import beans.LigneCommande;
-import beans.Produit;
-import beans.Utilisateur;
+import beans_old.Commande;
+import beans_old.LigneCommande;
+import beans_old.Produit;
+import beans_old.Utilisateur;
 import dao.ProduitDao;
 import dao.UtilisateursDao;
 

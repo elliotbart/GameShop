@@ -1,4 +1,4 @@
-package beansClean;
+package beans;
 
 import java.io.Serializable;
 

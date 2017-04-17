@@ -1,4 +1,4 @@
-package beansClean;
+package beans;
 
 import java.io.Serializable;
 
@@ -7,6 +7,7 @@ public class Game implements Serializable {
 	
 	private String title;
 	private int price;
+	private String console;
 	
 	public Game() {
 		
@@ -26,6 +27,14 @@ public class Game implements Serializable {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public String getConsole() {
+		return console;
+	}
+
+	public void setConsole(String console) {
+		this.console = console;
 	}
 
 }

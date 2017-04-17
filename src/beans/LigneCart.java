@@ -1,14 +1,15 @@
-package beansClean;
+package beans;
 
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class CartGame implements Serializable {
+public class LigneCart implements Serializable {
 	
 	private int cart;
 	private String game;
+	private int quantity;
 	
-	public CartGame() {
+	public LigneCart() {
 		
 	}
 
@@ -26,6 +27,14 @@ public class CartGame implements Serializable {
 
 	public void setGame(String game) {
 		this.game = game;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 }

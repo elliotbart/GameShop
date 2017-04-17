@@ -1,33 +1,30 @@
 CREATE TABLE CART (
-	pk_id INT,
-	PRIMARY KEY (pk_id)
-);
-
-CREATE TABLE GAME (
-	pk_title VARCHAR(40),
-	price INT,
-	PRIMARY KEY (pk_title)
+	pk_id INT PRIMARY KEY
 );
 
 CREATE TABLE CONSOLE (
-	pk_name VARCHAR(20),
-	PRIMARY KEY (pk_name)
+	pk_name VARCHAR(20) PRIMARY KEY
+);
+
+CREATE TABLE GAME (
+	pk_title VARCHAR(40) PRIMARY KEY,
+	fk_console VARCHAR(40) NOT NULL,
+	price INT NOT NULL,
+	FOREIGN KEY fk_console REFERENCES CONSOLE(pk_name)
 );
 
 CREATE TABLE TYPE (
-	pk_type VARCHAR(20),
-	PRIMARY KEY (pk_type)
+	pk_type VARCHAR(20) PRIMARY KEY
 );
 
 CREATE TABLE CLIENT (
-	pk_email VARCHAR(40),
+	pk_email VARCHAR(40) PRIMARY KEY,
 	lastName VARCHAR(20) NOT NULL,
 	firstName VARCHAR(20) NOT NULL,
 	password VARCHAR(20) NOT NULL,
 	birthDate DATE NOT NULL,
-	fk_cart INT,
-	FOREIGN KEY (fk_cart) REFERENCES CART(pk_id),
-	PRIMARY KEY (pk_email)
+	fk_cart INT NOT NULL,
+	FOREIGN KEY (fk_cart) REFERENCES CART(pk_id)
 );
 
 CREATE TABLE GAME_TYPE (
@@ -38,10 +35,10 @@ CREATE TABLE GAME_TYPE (
 	PRIMARY KEY (fk_game, fk_type)
 );
 
-CREATE TABLE CART_GAME (
+CREATE TABLE LIGNE_CART (
 	fk_cart INT,
 	fk_game VARCHAR(40),
-	nb SMALLINT,
+	quantity INT NOT NULL,
 	PRIMARY KEY (fk_cart, fk_game),
 	FOREIGN KEY (fk_cart) REFERENCES CART(pk_id),
 	FOREIGN KEY (fk_game) REFERENCES GAME(pk_title)

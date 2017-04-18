@@ -2,9 +2,16 @@ package beans;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @SuppressWarnings("serial")
+@Entity
 public class Type implements Serializable {
 	
+	@Id
+	@Column(name="pk_type")
 	private String type;
 	
 	public Type() {

@@ -1,4 +1,4 @@
-package dao;
+package old_dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import beans_old.Utilisateur;
+import old_beans.Utilisateur;
 
 public class UtilisateursDao {
 

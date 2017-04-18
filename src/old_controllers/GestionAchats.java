@@ -1,4 +1,4 @@
-package controllers;
+package old_controllers;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans_old.Commande;
-import beans_old.LigneCommande;
-import beans_old.Produit;
-import beans_old.Utilisateur;
-import dao.ProduitDao;
-import dao.UtilisateursDao;
+import old_beans.Commande;
+import old_beans.LigneCommande;
+import old_beans.Produit;
+import old_beans.Utilisateur;
+import old_dao.ProduitDao;
+import old_dao.UtilisateursDao;
 
 /**
  * Servlet implementation class GestionAchats

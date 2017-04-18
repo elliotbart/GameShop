@@ -1,4 +1,4 @@
-package beans_old;
+package old_beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package controllers;
+package old_controllers;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans_old.NameComp;
-import beans_old.UsernameComp;
-import beans_old.Utilisateur;
-import dao.UtilisateursDao;
+import old_beans.NameComp;
+import old_beans.UsernameComp;
+import old_beans.Utilisateur;
+import old_dao.UtilisateursDao;
 
 /**
  * Servlet implementation class GestionUsers

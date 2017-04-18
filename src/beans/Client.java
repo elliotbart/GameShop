@@ -2,18 +2,40 @@ package beans;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @SuppressWarnings("serial")
+@Entity
 public class Client implements Serializable {
 	
+	@Id
+	@Column(name="pk_email")
 	private String email;
+	
 	private String lastName;
+	
 	private String firstName;
+	
 	private String password;
-	private String date;
+	
+	private String birthDate;
+	
+	@Column(name="fk_cart")
 	private int cart;
 	
 	public Client() {
 		
+	}
+	
+	public Client(String email, String lastName, String firstName, String password, String birthDate, int cart) {
+		this.email = email;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.password = password;
+		this.birthDate = birthDate;
+		this.cart = cart;
 	}
 
 	public String getEmail() {
@@ -48,12 +70,12 @@ public class Client implements Serializable {
 		this.password = password;
 	}
 
-	public String getDate() {
-		return date;
+	public String getBirthDate() {
+		return birthDate;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public int getCart() {

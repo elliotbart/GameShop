@@ -1,4 +1,4 @@
-package controllers;
+package old_controllers;
 
 import java.io.IOException;
 import java.util.regex.Pattern;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import services.MailingTools;
+import old_services.MailingTools;
 
 /**
  * Servlet implementation class ContactServlet

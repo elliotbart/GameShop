@@ -39,8 +39,22 @@ public class GameDao {
 		} finally {
 			session.close();
 		}
-		
+
 		sessionFactory.close();
+	}
+
+	@SuppressWarnings("unchecked")
+	public static List<Game> findAll() {
+		SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		// List personnes = null;
+		List<Game> dataBaseGames = new ArrayList<Game>();
+		
+		dataBaseGames = session.createCriteria(Game.class).list();
+		
+		session.close();
+		sessionFactory.close();
+		return dataBaseGames;
 	}
 
 	public static List<Game> findAllSQL() {

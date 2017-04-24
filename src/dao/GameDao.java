@@ -47,7 +47,7 @@ public class GameDao {
 	public static List<Game> findAll() {
 		SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
-		// List personnes = null;
+		
 		List<Game> dataBaseGames = new ArrayList<Game>();
 		
 		dataBaseGames = session.createCriteria(Game.class).list();

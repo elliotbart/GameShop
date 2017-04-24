@@ -28,7 +28,21 @@ public class VideoGames {
 	@GET
 	@Path("/games")
 	public Response getProducts(@Context HttpRequest request) {
+		
+//		System.out.println("\n!!!!!!!!!!     GetProducts OK      !!!!!!!");
+//		List<Game> list = GameDao.findAllSQL();
+//		for(Game g : list) {
+//			System.out.println(g.getTitle());
+//		}
+//		ResponseBuilder rb;
+//		rb = Response.ok().status(200);
+//		return rb.build();
+		
+		
+		
+		
 		List<Game> list = GameDao.findAll();
+		
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 		String json = "[]";

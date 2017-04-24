@@ -8,3 +8,4 @@ build/*
 .classpath
 .settings/*
 WebContent/WEB-INF/lib/mysql-connector-java-5.0.5-bin.jar
+WebContent/WEB-INF/lib/mysql-connector-java-5.1.41-bin.jar

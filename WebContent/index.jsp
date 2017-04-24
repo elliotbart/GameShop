@@ -14,7 +14,7 @@
 	mentre con il prossimo posso recuperare un parametro
 	--%>
 	
-	<jsp:include page="entete.jsp">
+	<%-- <jsp:include page="entete.jsp"> --%>
 		<jsp:param value="enrico" name="username"/>
 	</jsp:include>
 	

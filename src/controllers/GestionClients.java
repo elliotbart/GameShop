@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,8 +33,14 @@ public class GestionClients extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
-		Game game = new Game("jeux1", "PS4", 100.);
-		GameDao.insert(game);
+		
+//		Game game = new Game("jeux1", "PS4", 100.);
+//		GameDao.insert(game);
+		
+		List<Game> list = GameDao.findAll();
+		for(Game g : list) {
+			System.out.println(g.getTitle());
+		}
 	}
 
 	/**

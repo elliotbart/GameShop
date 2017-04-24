@@ -1,26 +1,51 @@
 package webservice.rest;
 
-import javax.ejb.Stateless;
+import java.util.List;
+
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
-@Stateless
+import org.jboss.resteasy.spi.HttpRequest;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
+import beans.Game;
+import dao.GameDao;
+
+
 @Path("/VideoGames")
 //@Consumes(MediaType.APPLICATION_JSON)
 //@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 public class VideoGames {
 	
+	@PermitAll
 	@GET
-	@Path("/store")
-//	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response getstore(@QueryParam("nom") String nom, @QueryParam("prenom") String prenom) {
-//		List<Game> dataBaseGames = GameDao.findAll();
-//		return Response.ok(dataBaseGames).build();
+	@Path("/games")
+	public Response getProducts(@Context HttpRequest request) {
+		List<Game> list = GameDao.findAll();
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.enable(SerializationFeature.INDENT_OUTPUT);
+		String json = "[]";
+		try {
+			json = mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 		
-		String output = "Jersey repond !";
-		return Response.status(200).entity(output).build();
+		ResponseBuilder rb;
+		if(json.isEmpty()) {
+			rb = Response.serverError().status(404);
+		}
+		else {
+			rb = Response.ok(json).status(200);
+		}		
+		return rb.build();
 	}
 
 }

@@ -1,11 +1,10 @@
 *.class
 .tern-project
-.settings
-.classpath
 .project
-*.jar
 src/dao/ConnexionBDD.java
-
-
-
 src/old_dao/ConnexionBDD.java
+build/*
+
+.classpath
+.settings/*
+WebContent/WEB-INF/lib/mysql-connector-java-5.0.5-bin.jar

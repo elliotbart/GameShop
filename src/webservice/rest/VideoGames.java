@@ -7,7 +7,10 @@ import javax.annotation.security.PermitAll;
 import javax.persistence.Column;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
@@ -30,7 +33,7 @@ public class VideoGames {
 	@GET
 	@Path("/games")
 	public Response getProducts(@Context HttpRequest request) {
-		List<Game> list = GameDao.findAll();
+		List<Game> dataBaseGames = GameDao.findAll();
 		List<String> dataBaseGamesNames = new ArrayList<String>();
 		for(Game game : dataBaseGames) {
 			dataBaseGamesNames.add(game.getTitle());
@@ -53,6 +56,38 @@ public class VideoGames {
 		}		
 		return rb.build();
 	}
+	
+	@PermitAll
+	@GET
+	@Path("/games/{name}")
+	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	public Response getVideoGame(@PathParam("name") String name) {
+		Game game = GameDao.findSQL(name);
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.enable(SerializationFeature.INDENT_OUTPUT);
+		String json = "[]";
+		try {
+			json = mapper.writeValueAsString(game);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		ResponseBuilder rb;
+		if (json.isEmpty()) {
+			rb = Response.serverError().status(404);
+		} else {
+			rb = Response.ok(json).status(200);
+		}
+		return rb.build();
+	}
+	
+//	@PermitAll
+//	@GET
+//	@Path("/games/{name}/type")
+//	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+//	public Response getVideoGameType(@PathParam("name") String name) {
+//		
+//	}
 
 	
 	class GameType {
@@ -62,10 +97,42 @@ public class VideoGames {
 		private String types;
 		
 		public GameType(String title, String console, Double price, String types) {
-			this.title = title;
-			this.console = console;
-			this.price = price;
+			this.setTitle(title);
+			this.setConsole(console);
+			this.setPrice(price);
+			this.setTypes(types);
+		}
+
+		public String getTypes() {
+			return types;
+		}
+
+		public void setTypes(String types) {
 			this.types = types;
+		}
+
+		public String getConsole() {
+			return console;
+		}
+
+		public void setConsole(String console) {
+			this.console = console;
+		}
+
+		public String getTitle() {
+			return title;
+		}
+
+		public void setTitle(String title) {
+			this.title = title;
+		}
+
+		public Double getPrice() {
+			return price;
+		}
+
+		public void setPrice(Double price) {
+			this.price = price;
 		}
 		
 	}

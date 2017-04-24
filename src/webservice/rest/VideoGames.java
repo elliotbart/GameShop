@@ -1,8 +1,10 @@
 package webservice.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.persistence.Column;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
@@ -29,11 +31,15 @@ public class VideoGames {
 	@Path("/games")
 	public Response getProducts(@Context HttpRequest request) {
 		List<Game> list = GameDao.findAll();
+		List<String> dataBaseGamesNames = new ArrayList<String>();
+		for(Game game : dataBaseGames) {
+			dataBaseGamesNames.add(game.getTitle());
+		}
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 		String json = "[]";
 		try {
-			json = mapper.writeValueAsString(list);
+			json = mapper.writeValueAsString(dataBaseGamesNames);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
@@ -48,4 +54,19 @@ public class VideoGames {
 		return rb.build();
 	}
 
+	
+	class GameType {
+		private String title;
+		private Double price;
+		private String console;
+		private String types;
+		
+		public GameType(String title, String console, Double price, String types) {
+			this.title = title;
+			this.console = console;
+			this.price = price;
+			this.types = types;
+		}
+		
+	}
 }

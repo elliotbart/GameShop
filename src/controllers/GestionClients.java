@@ -34,13 +34,13 @@ public class GestionClients extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-//		Game game = new Game("jeux1", "PS4", 100.);
-//		GameDao.insert(game);
+		Game game = new Game("jeux1", "PS4", 100.);
+		GameDao.insert(game);
 		
-		List<Game> list = GameDao.findAll();
+		/*List<Game> list = GameDao.findAll();
 		for(Game g : list) {
 			System.out.println(g.getTitle());
-		}
+		}*/
 	}
 
 	/**

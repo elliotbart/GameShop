@@ -13,14 +13,26 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
 
 import beans.Game;
+import beans.Type;
 
 @SuppressWarnings("deprecation")
 public class GameDao {
 
 	public static final String GAME_TABLE = "GAME";
+	public static final String GAME_TYPE_TABLE = "GAME_TYPE";
+	public static final String TYPE_TABLE = "TYPE";
+
 	public static final String GAME_TITLE = "pk_title";
 	public static final String GAME_CONSOLE = "fk_console";
 	public static final String GAME_PRICE = "price";
+	
+	
+	public static final String GAME_TYPE_TYPE = "fk_type";
+	public static final String GAME_TYPE_GAME = "fk_game";
+
+	public static final String TYPE_TYPE = "pk_type";
+	
+
 
 	public static void insert(Game game) {
 		SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
@@ -104,6 +116,33 @@ public class GameDao {
 			e.printStackTrace();
 		}
 		return game;
+	}
+	
+	public static Type findGameTypeSQL(String name) {
+		Game game = null;
+		Type type = null;
+		Connection connection = null;
+		try {
+			connection = ConnexionBDD.getInstance().getConnection();
+			String requeteSQL = "SELECT " + TYPE_TYPE 
+					+ " FROM " + GAME_TABLE + "," + GAME_TYPE_TABLE + "," + TYPE_TABLE
+					+ " WHERE " + GAME_TABLE + "." + GAME_TITLE + "=" + GAME_TYPE_TABLE + "." + GAME_TYPE_GAME + "=" + GAME_TYPE_TABLE + "." + GAME_TYPE_GAME
+					+ " AND " + GAME_TYPE_TABLE + "." + GAME_TYPE_TYPE + "=" + TYPE_TABLE + "." + TYPE_TYPE + " AND " + GAME_TITLE + "=?" ;
+			PreparedStatement ps = connection.prepareStatement(requeteSQL);
+			ps.setString(1, name);
+
+			ResultSet resultSet = ps.executeQuery();
+			while (resultSet.next()) {
+				//game = new Game(resultSet.getString(GAME_TITLE), resultSet.getString(GAME_CONSOLE),
+				//		resultSet.getDouble(GAME_PRICE));
+				type = new Type(resultSet.getString(TYPE_TYPE));
+			}
+			resultSet.close();
+			ConnexionBDD.getInstance().closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return type;
 	}
 
 }

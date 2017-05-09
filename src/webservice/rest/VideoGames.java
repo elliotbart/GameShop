@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -32,7 +33,7 @@ public class VideoGames {
 	@GET
 	@Path("/games")
 	public Response getProducts(@Context HttpRequest request) {
-		List<Game> dataBaseGames = GameDao.findAll();
+		List<Game> dataBaseGames = GameDao.findAllSQL();
 		List<String> dataBaseGamesNames = new ArrayList<String>();
 		for(Game game : dataBaseGames) {
 			dataBaseGamesNames.add(game.getTitle());
@@ -59,7 +60,7 @@ public class VideoGames {
 	@PermitAll
 	@GET
 	@Path("/games/{name}")
-	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	//@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 	public Response getVideoGame(@PathParam("name") String name) {
 		Game game = GameDao.findSQL(name);
 		ObjectMapper mapper = new ObjectMapper();

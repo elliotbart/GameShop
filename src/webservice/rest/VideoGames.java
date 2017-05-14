@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -20,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import beans.Game;
+import beans.Type;
 import dao.GameDao;
 
 
@@ -59,7 +61,7 @@ public class VideoGames {
 	@PermitAll
 	@GET
 	@Path("/games/{name}")
-	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	//@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 	public Response getVideoGame(@PathParam("name") String name) {
 		Game game = GameDao.findSQL(name);
 		ObjectMapper mapper = new ObjectMapper();
@@ -80,13 +82,29 @@ public class VideoGames {
 		return rb.build();
 	}
 	
-//	@PermitAll
-//	@GET
-//	@Path("/games/{name}/type")
+	@PermitAll
+	@GET
+	@Path("/games/{name}/type")
 //	@Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-//	public Response getVideoGameType(@PathParam("name") String name) {
-//		
-//	}
+	public Response getVideoGameType(@PathParam("name") String name) {
+		Type type = GameDao.findGameTypeSQL(name);
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.enable(SerializationFeature.INDENT_OUTPUT);
+		String json = "[]";
+		try {
+			json = mapper.writeValueAsString(type);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		ResponseBuilder rb;
+		if (json.isEmpty()) {
+			rb = Response.serverError().status(404);
+		} else {
+			rb = Response.ok(json).status(200);
+		}
+		return rb.build();
+	}
 
 	
 	class GameType {

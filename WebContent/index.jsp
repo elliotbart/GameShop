@@ -16,7 +16,7 @@
 	
 	<%-- <jsp:include page="entete.jsp"> --%>
 		<jsp:param value="enrico" name="username"/>
-	</jsp:include>
+	<%-- </jsp:include>--%>
 	
 	<h1>Formation Java</h1>
 	Nombre de visiteurs : ${applicationScope.nbUsers}

@@ -13,3 +13,9 @@ src/hibernate.cfg.xml
 WebContent/WEB-INF/lib/postgresql-42.0.0.jar
 WebContent/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar
 /build/
+
+src/hibernate.cfg.xml
+
+*.xml
+
+src/hibernate.cfg.xml

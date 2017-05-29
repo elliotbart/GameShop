@@ -1,6 +1,5 @@
 package webservice.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
@@ -29,30 +28,29 @@ public class VideoGames {
 	 @PermitAll
 	 @GET
 	 @Path("/games")
-	 public Response getVideoGames(@Context HttpRequest request) {
+	public Response getVideoGames(@Context HttpRequest request) {
 	 List<Game> dataBaseGames = GameDao.findAllSQL();
-	 List<String> dataBaseGamesNames = new ArrayList<String>();
-	 for(Game game : dataBaseGames) {
-	 dataBaseGamesNames.add(game.getTitle());
-	 }
+		// List<String> dataBaseGamesNames = new ArrayList<String>();
+		// for (Game game : dataBaseGames) {
+		// dataBaseGamesNames.add(game.getTitle());
+		// }
 	 ObjectMapper mapper = new ObjectMapper();
 	 mapper.enable(SerializationFeature.INDENT_OUTPUT);
-	 String json = "[]";
+		String json = "[]";
 	 try {
-	 json = mapper.writeValueAsString(dataBaseGamesNames);
+			json = mapper.writeValueAsString(dataBaseGames);
 	 } catch (JsonProcessingException e) {
 	 e.printStackTrace();
 	 }
 	
-	 ResponseBuilder rb;
-	 if(json.isEmpty()) {
-	 rb = Response.serverError().status(404);
-	 }
-	 else {
-	 rb = Response.ok(json).status(200);
-	 }
-	 return rb.build();
-	 }
+		ResponseBuilder rb;
+		if (json.isEmpty()) {
+			rb = Response.serverError().status(404);
+		} else {
+			rb = Response.ok(json).status(200);
+		}
+		return rb.build();
+	}
 
 	@PermitAll
 	@GET
@@ -101,50 +99,51 @@ public class VideoGames {
 		return rb.build();
 	}
 
-	class GameType {
-		private String title;
-		private Double price;
-		private String console;
-		private String types;
-
-		public GameType(String title, String console, Double price, String types) {
-			this.setTitle(title);
-			this.setConsole(console);
-			this.setPrice(price);
-			this.setTypes(types);
-		}
-
-		public String getTypes() {
-			return types;
-		}
-
-		public void setTypes(String types) {
-			this.types = types;
-		}
-
-		public String getConsole() {
-			return console;
-		}
-
-		public void setConsole(String console) {
-			this.console = console;
-		}
-
-		public String getTitle() {
-			return title;
-		}
-
-		public void setTitle(String title) {
-			this.title = title;
-		}
-
-		public Double getPrice() {
-			return price;
-		}
-
-		public void setPrice(Double price) {
-			this.price = price;
-		}
-
-	}
+	// class GameType {
+	// private String title;
+	// private Double price;
+	// private String console;
+	// private String types;
+	//
+	// public GameType(String title, String console, Double price, String types)
+	// {
+	// this.setTitle(title);
+	// this.setConsole(console);
+	// this.setPrice(price);
+	// this.setTypes(types);
+	// }
+	//
+	// public String getTypes() {
+	// return types;
+	// }
+	//
+	// public void setTypes(String types) {
+	// this.types = types;
+	// }
+	//
+	// public String getConsole() {
+	// return console;
+	// }
+	//
+	// public void setConsole(String console) {
+	// this.console = console;
+	// }
+	//
+	// public String getTitle() {
+	// return title;
+	// }
+	//
+	// public void setTitle(String title) {
+	// this.title = title;
+	// }
+	//
+	// public Double getPrice() {
+	// return price;
+	// }
+	//
+	// public void setPrice(Double price) {
+	// this.price = price;
+	// }
+	//
+	// }
 }

@@ -10,15 +10,17 @@
 
         <meta charset="utf-8" />
 
-        <title>Inscription</title>
+        <title>Connection</title>
 
         <!--  <link type="text/css" rel="stylesheet" href="form.css" />-->
 
     </head>
 
     <body>
+    
+    	<label>Page de Connection au site internet. Pas encore disponible</label>
 
-       <form method="post" action="Inscription">
+<%--        <form method="post" action="Inscription">
 		<label for="Username">E-mail :</label>
 		<input type="text" name="username" id="username1" />
 		<span class="erreur">${form.erreurs['username']}</span>
@@ -40,7 +42,7 @@
 		<label for="Date naissance">Date naissance:</label>
 		<input type="date" name="date_naissance" id="date_naissance1" />
 		<br />
-		<%-- <input type="hidden" name="id_client" value="${uModif.id_client}"/> --%>
+		<input type="hidden" name="id_client" value="${uModif.id_client}"/>
 		<input type="reset" value=" Reset " />
 		<input type="submit" value="Valider" />
 	</form>
@@ -52,7 +54,7 @@
 
         <!-- <p >Sucess de l'inscription. </p> -->
 
-    </c:if>
+    </c:if> --%>
 
     </body>
 

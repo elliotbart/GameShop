@@ -1,10 +1,5 @@
 package controllers;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 
 import beans.Client;
@@ -71,25 +66,6 @@ public class GestionInscription {
 			return valeur;
 		}
 	}
-	
-	private boolean checkDate(Date date) {
-		Date currentDate = Calendar.getInstance().getTime();
-		if(date.after(currentDate)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	private static Date getValeurDate(HttpServletRequest request, String nomChamp) throws ParseException {
-		String valeur = request.getParameter(nomChamp);
-		if (valeur == null || valeur.trim().length() == 0) {
-			return null;
-		} else {
-			Date valeur_date = new SimpleDateFormat("yyyy-MM-dd").parse(valeur);
-			return valeur_date;
-		}
-	}
 
 	private void validationPassword(String motDePasse) throws Exception {
 		if (motDePasse != null) {
@@ -118,6 +94,26 @@ public class GestionInscription {
             throw new Exception( "Merci de saisir une adresse mail valide." );
         }
     }
+	
+	// private boolean checkDate(Date date) {
+	// Date currentDate = Calendar.getInstance().getTime();
+	// if(date.after(currentDate)) {
+	// return true;
+	// } else {
+	// return false;
+	// }
+	// }
+
+	// private static Date getValeurDate(HttpServletRequest request, String
+	// nomChamp) throws ParseException {
+	// String valeur = request.getParameter(nomChamp);
+	// if (valeur == null || valeur.trim().length() == 0) {
+	// return null;
+	// } else {
+	// Date valeur_date = new SimpleDateFormat("yyyy-MM-dd").parse(valeur);
+	// return valeur_date;
+	// }
+	// }
 
 	public boolean hasErrorOccured() {
 		return errorOccured;

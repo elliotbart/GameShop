@@ -7,9 +7,8 @@
 <title>Index</title>
 </head>
 <body>
-	<h1>Accueil</h1>
 
-	<br />
+	<h1>Accueil</h1>
 	
 	<br />
 	<a href="Connection">Connection</a>
@@ -19,5 +18,6 @@
 	
 	<br /> 
 	<a href="VoirPanier">Panier</a>
+	
 </body>
 </html>

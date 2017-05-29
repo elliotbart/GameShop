@@ -33,17 +33,18 @@ public class Inscription extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.getServletContext().getRequestDispatcher( "inscription.jsp" ).forward( request, response );
+		this.getServletContext().getRequestDispatcher( "/inscription.jsp" ).forward(request, response);
     }
 	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+				
 		GestionInscription gestionInscription = new GestionInscription();
 
-        /* Traitement de la requête et récupération du bean en résultant */
+        // Traitement de la requete et recuperation du bean en r�sultat
         Client client = null;
 		try {
 			client = gestionInscription.getClient(request);
@@ -58,21 +59,21 @@ public class Inscription extends HttpServlet {
 				 int id_cart = CartDao.findLastCart();
 				 client.setCart(id_cart);
 				 if(ClientDao.insertSQL(client) > 0){
-					 gestionInscription.setResultat("succès de l'inscription.");
+					 gestionInscription.setResultat("Inscription has succeeded");
 				 }
 				 else{
 					 CartDao.deleteCart(id_cart);
-					 gestionInscription.setResultat("échec de l'inscription.");
+					 gestionInscription.setResultat("Inscription has failer");
 				 }	 
 			 }
 			 else {
-				 gestionInscription.setResultat("il existe deja un utilisateur avec cet email");
+				 gestionInscription.setResultat("A user with this email already exists");
 			 }
 			 
 	        } 
 		 request.setAttribute("gestionInscription", gestionInscription);
 		 
-		 request.getRequestDispatcher("inscription.jsp").forward(request, response);
+		 request.getRequestDispatcher("/inscription.jsp").forward(request, response);
 		
 	}
 

@@ -19,14 +19,18 @@ public class Game implements Serializable {
 	@Column(name="fk_console")
 	private String console;
 	
+	@Column(name="description")
+	private String description;
+	
 	public Game() {
 		
 	}
 	
-	public Game(String title, String console, Double price) {
+	public Game(String title, String console, Double price, String description) {
 		this.title = title;
 		this.console = console;
 		this.price = price;
+		this.description = description;
 	}
 
 	public String getTitle() {
@@ -51,6 +55,14 @@ public class Game implements Serializable {
 
 	public void setConsole(String console) {
 		this.console = console;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

@@ -16,10 +16,13 @@ import dao.ClientDao;
 /**
  * Servlet implementation class inscription
  */
-@WebServlet("/Inscription")
+@WebServlet(name = "Inscription", urlPatterns = "/Inscription")
 public class Inscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private static final String ATT_ERREURS = "erreurs";
+	private static final String ATT_RESULTAT = "resultat";
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,7 +36,7 @@ public class Inscription extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.getServletContext().getRequestDispatcher( "inscription.jsp" ).forward( request, response );
+		this.getServletContext().getRequestDispatcher( "/inscription.jsp" ).forward( request, response );
     }
 	
 
@@ -45,34 +48,34 @@ public class Inscription extends HttpServlet {
 
         /* Traitement de la requête et récupération du bean en résultant */
         Client client = null;
-		try {
-			client = gestionInscription.getClient(request);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		client = gestionInscription.getClient(request);
+
 		
-		 if (!gestionInscription.hasErrorOccured()) { 
+		 if (gestionInscription.getErreurs().isEmpty()) { 
 			 if (ClientDao.findSQL(client.getEmail()) == null) {
 				 CartDao.insertSQL(new Cart());
 				 int id_cart = CartDao.findLastCart();
 				 client.setCart(id_cart);
 				 if(ClientDao.insertSQL(client) > 0){
-					 gestionInscription.setResultat("succès de l'inscription.");
+					 gestionInscription.setResultat("Succès de l'inscription.");
 				 }
 				 else{
 					 CartDao.deleteCart(id_cart);
-					 gestionInscription.setResultat("échec de l'inscription.");
+					 gestionInscription.setResultat("Echec de l'inscription.");
 				 }	 
 			 }
 			 else {
-				 gestionInscription.setResultat("il existe deja un utilisateur avec cet email");
+				 gestionInscription.setResultat("Il existe déjà un utilisateur avec cet email...");
 			 }
 			 
-	        } 
+		 } 
+		 
+		 
+		 request.setAttribute(ATT_ERREURS, gestionInscription.getErreurs());
+		 request.setAttribute(ATT_RESULTAT, gestionInscription.getResultat());
 		 request.setAttribute("gestionInscription", gestionInscription);
 		 
-		 request.getRequestDispatcher("inscription.jsp").forward(request, response);
+		 this.getServletContext().getRequestDispatcher("/inscription.jsp").forward(request, response);
 		
 	}
 

@@ -147,7 +147,8 @@ public class ClientDao {
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
-				client = new Client(resultSet.getString("pk_email"), resultSet.getString("lastName"),
+				
+				client = new Client(email, resultSet.getString("lastName"),
 						resultSet.getString("firstName"), resultSet.getString("password"),
 						resultSet.getString("birthDate"), resultSet.getInt("fk_cart"));
 			}

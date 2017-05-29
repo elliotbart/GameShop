@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,17 +15,23 @@ public class GestionInscription {
 
 	private static final String CHAMP_EMAIL = "username";
 	private static final String CHAMP_PASS = "password";
+	private static final String CHAMP_NOM = "nom";
+	private static final String CHAMP_PRENOM = "prenom";
+	private static final String CHAMP_DATE_NAISSANCE = "date_naissance";
+	private static final String CHAMP_PASS_CHECK = "check";
 	
+	Map<String, String> erreurs = new HashMap<String, String>();
 	private boolean errorOccured = false;
+
 	private String resultat = "";
 
 	public Client getClient(HttpServletRequest request) {
 		String email = getValeurChamp(request, CHAMP_EMAIL);
 		String motDePasse = getValeurChamp(request, CHAMP_PASS);
-		String nom = getValeurChamp(request, "nom");
-		String prenom = getValeurChamp(request, "prenom");
-		String birthDate = getValeurChamp(request, "date_naissance");
-		String checkmotDePasse = getValeurChamp(request, "check");
+		String nom = getValeurChamp(request, CHAMP_NOM);
+		String prenom = getValeurChamp(request, CHAMP_PRENOM);
+		String birthDate = getValeurChamp(request, CHAMP_DATE_NAISSANCE);
+		String checkmotDePasse = getValeurChamp(request, CHAMP_PASS_CHECK);
 
 		Client client = new Client();
 
@@ -31,7 +39,7 @@ public class GestionInscription {
 		try {
 			validationEmail(email);
 		} catch (Exception e) {
-			errorOccured = true;
+			erreurs.put(CHAMP_EMAIL, e.getMessage());
 		}
 		client.setEmail(email);
 
@@ -39,6 +47,7 @@ public class GestionInscription {
 		try {
 			validationPassword(motDePasse);
 		} catch (Exception e) {
+			erreurs.put(CHAMP_PASS, e.getMessage());
 			errorOccured = true;
 		}
 		client.setPassword(motDePasse);
@@ -46,20 +55,45 @@ public class GestionInscription {
 		try {
 			checkReTypePassword(motDePasse, checkmotDePasse);
 		} catch (Exception e) {
+			erreurs.put(CHAMP_PASS_CHECK, e.getMessage());
 			errorOccured = true;
 		}
-
+		
+		try {
+			checkNames(nom);
+		}
+		catch (Exception e) {
+			erreurs.put(CHAMP_NOM, e.getMessage());
+			errorOccured = true;
+		}
 		client.setLastName(nom);
+		try {
+			checkNames(prenom);
+		}
+		catch (Exception e) {
+			erreurs.put(CHAMP_PRENOM, e.getMessage());
+			errorOccured = true;
+		}
 		client.setFirstName(prenom);
+		
+		try {
+			Date birth = getStringToDate(birthDate);
+			System.out.println(birth.toString());
+			checkBirthDate(birth);
+		} 
+		catch (Exception e) {
+			erreurs.put(CHAMP_DATE_NAISSANCE, e.getMessage());
+			errorOccured = true;
+			
+		}
 		client.setBirthDate(birthDate);
 
-		// /* Initialisation du r茅sultat global de la validation. */
-		// if ( !erreurs.isEmpty() ) {
-		// resultat = "echec de l'inscription.";
-		// }/* else {
-		// resultat = "echec de l'inscription.";
-		// }*/
-
+		if (erreurs.isEmpty()){
+			resultat = "Succès de l'inscription.";
+		}
+		else {
+			resultat = "Echec de l'inscription";
+		}
 		return client;
 	}
 
@@ -72,29 +106,37 @@ public class GestionInscription {
 		}
 	}
 	
-	private boolean checkDate(Date date) {
-		Date currentDate = Calendar.getInstance().getTime();
-		if(date.after(currentDate)) {
-			return true;
-		} else {
-			return false;
+	private void checkBirthDate(Date date) throws Exception {
+		//Date currentDate = Calendar.getInstance().getTime();
+		
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.YEAR, -18);
+		Date majorityDate = cal.getTime();
+
+		if (majorityDate != null) {
+			if(date.after(majorityDate)) {
+				throw new Exception("Vous devez être majeur(e) pour vous inscrire... Vous pouvez quand même consulter le catalgue sans authentification :) ");
+			} 
 		}
+		else 
+			throw new Exception("Merci d'entrer une date de naissance"); // Impossible d'arriver ici avec JS google
 	}
 
-	private static Date getValeurDate(HttpServletRequest request, String nomChamp) throws ParseException {
-		String valeur = request.getParameter(nomChamp);
-		if (valeur == null || valeur.trim().length() == 0) {
-			return null;
-		} else {
-			Date valeur_date = new SimpleDateFormat("yyyy-MM-dd").parse(valeur);
-			return valeur_date;
-		}
+	private static Date getStringToDate(String date) throws ParseException {
+		System.out.println(date);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date returnDate = formatter.parse(date);
+		
+		System.out.println(returnDate);
+		return returnDate;
+		
 	}
 
 	private void validationPassword(String motDePasse) throws Exception {
 		if (motDePasse != null) {
-			if (motDePasse.length() < 3) {
-				throw new Exception("Le mot de passe doit contenir au moins 3 caract猫res.");
+			if (motDePasse.length() < 5) {
+				throw new Exception("Le mot de passe doit contenir au moins 5 caractères.");
 			}
 		} else {
 			throw new Exception("Merci de saisir votre mot de passe.");
@@ -103,13 +145,22 @@ public class GestionInscription {
 
 	private void checkReTypePassword(String motDePasse, String checkmotDePasse) throws Exception {
 		if (checkmotDePasse != null) {
-			if (checkmotDePasse.length() < 3) {
-				throw new Exception("Le mot de passe doit contenir au moins 3 caract猫res.");
+			if (checkmotDePasse.length() < 5) {
+				throw new Exception("Le mot de passe doit contenir au moins 5 caractères.");
 			} else if (!checkmotDePasse.equals(motDePasse)) {
-				throw new Exception("veuillez taper les memes mot de passe .");
+				throw new Exception("Les mots de passe doivent être identiques !");
 			}
 		} else {
-			throw new Exception("Merci de saisir votre verifivation de mot de passe.");
+			throw new Exception("Merci de saisir votre verification du mot de passe.");
+		}
+	}
+	
+	private void checkNames(String name) throws Exception {
+		if (name == null) {
+			throw new Exception("Nom ou prénom vide");
+		}
+		else if (!name.matches("^[a-zA-Z]+$")){
+			throw new Exception("Les noms doivent contenir uniquement des caractères alphabétiques");
 		}
 	}
 	
@@ -126,13 +177,17 @@ public class GestionInscription {
 	public void setErrorOccured(boolean errorOccured) {
 		this.errorOccured = errorOccured;
 	}
-
+	
 	public String getResultat() {
 		return resultat;
 	}
 
 	public void setResultat(String resultat) {
 		this.resultat = resultat;
+	}
+	
+	public Map<String,String> getErreurs() {
+		return erreurs;
 	}
 
 }

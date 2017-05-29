@@ -19,3 +19,23 @@ src/hibernate.cfg.xml
 *.xml
 
 src/hibernate.cfg.xml
+
+WebContent/WEB-INF/lib/commons-codec-1.9.jar
+
+WebContent/WEB-INF/lib/commons-logging-1.2.jar
+
+WebContent/WEB-INF/lib/fluent-hc-4.5.3.jar
+
+WebContent/WEB-INF/lib/httpclient-4.5.3.jar
+
+WebContent/WEB-INF/lib/httpclient-cache-4.5.3.jar
+
+WebContent/WEB-INF/lib/httpclient-win-4.5.3.jar
+
+WebContent/WEB-INF/lib/httpcore-4.4.6.jar
+
+WebContent/WEB-INF/lib/httpmime-4.5.3.jar
+
+WebContent/WEB-INF/lib/jna-4.1.0.jar
+
+WebContent/WEB-INF/lib/jna-platform-4.1.0.jar

@@ -21,7 +21,6 @@ public class GestionInscription {
 	private static final String CHAMP_PASS_CHECK = "check";
 	
 	Map<String, String> erreurs = new HashMap<String, String>();
-	private boolean errorOccured = false;
 
 	private String resultat = "";
 
@@ -48,7 +47,6 @@ public class GestionInscription {
 			validationPassword(motDePasse);
 		} catch (Exception e) {
 			erreurs.put(CHAMP_PASS, e.getMessage());
-			errorOccured = true;
 		}
 		client.setPassword(motDePasse);
 
@@ -56,7 +54,6 @@ public class GestionInscription {
 			checkReTypePassword(motDePasse, checkmotDePasse);
 		} catch (Exception e) {
 			erreurs.put(CHAMP_PASS_CHECK, e.getMessage());
-			errorOccured = true;
 		}
 		
 		try {
@@ -64,7 +61,6 @@ public class GestionInscription {
 		}
 		catch (Exception e) {
 			erreurs.put(CHAMP_NOM, e.getMessage());
-			errorOccured = true;
 		}
 		client.setLastName(nom);
 		try {
@@ -72,7 +68,6 @@ public class GestionInscription {
 		}
 		catch (Exception e) {
 			erreurs.put(CHAMP_PRENOM, e.getMessage());
-			errorOccured = true;
 		}
 		client.setFirstName(prenom);
 		
@@ -83,7 +78,6 @@ public class GestionInscription {
 		} 
 		catch (Exception e) {
 			erreurs.put(CHAMP_DATE_NAISSANCE, e.getMessage());
-			errorOccured = true;
 			
 		}
 		client.setBirthDate(birthDate);
@@ -170,13 +164,6 @@ public class GestionInscription {
         }
     }
 
-	public boolean hasErrorOccured() {
-		return errorOccured;
-	}
-
-	public void setErrorOccured(boolean errorOccured) {
-		this.errorOccured = errorOccured;
-	}
 	
 	public String getResultat() {
 		return resultat;

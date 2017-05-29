@@ -9,7 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list> -->
-  
+  <!--
   <servlet>
     <servlet-name>GestionGames</servlet-name>
     <servlet-class>controllers.GestionGames</servlet-class>
@@ -18,5 +18,7 @@
     <servlet-name>GestionGames</servlet-name>
     <url-pattern>/VideoGames</url-pattern>
   </servlet-mapping>
+  
+  -->
   
 </web-app>

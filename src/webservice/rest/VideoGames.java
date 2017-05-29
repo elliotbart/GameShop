@@ -26,57 +26,33 @@ import dao.GameDao;
 // @Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
 public class VideoGames {
 
-	@PermitAll
-	@GET
-	@Path("/games")
-	public void getVideoGames(@Context HttpRequest request) {
-		List<Game> dataBaseGames = GameDao.findAllSQL();
-		List<String> dataBaseGamesNames = new ArrayList<String>();
-		for (Game game : dataBaseGames) {
-			dataBaseGamesNames.add(game.getTitle());
-		}
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
-		// String json = "[]";
-		String json = "";
-
-		try {
-			json = mapper.writeValueAsString(dataBaseGamesNames);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("test", json);
-		//request.forward("WebContent/Games.jsp");
-	}
-
-	// @PermitAll
-	// @GET
-	// @Path("/games")
-	// public Response getVideoGames(@Context HttpRequest request) {
-	// List<Game> dataBaseGames = GameDao.findAllSQL();
-	// List<String> dataBaseGamesNames = new ArrayList<String>();
-	// for(Game game : dataBaseGames) {
-	// dataBaseGamesNames.add(game.getTitle());
-	// }
-	// ObjectMapper mapper = new ObjectMapper();
-	// mapper.enable(SerializationFeature.INDENT_OUTPUT);
-	// String json = "[]";
-	// try {
-	// json = mapper.writeValueAsString(dataBaseGamesNames);
-	// } catch (JsonProcessingException e) {
-	// e.printStackTrace();
-	// }
-	//
-	// ResponseBuilder rb;
-	// if(json.isEmpty()) {
-	// rb = Response.serverError().status(404);
-	// }
-	// else {
-	// rb = Response.ok(json).status(200);
-	// }
-	// return rb.build();
-	// }
+	 @PermitAll
+	 @GET
+	 @Path("/games")
+	 public Response getVideoGames(@Context HttpRequest request) {
+	 List<Game> dataBaseGames = GameDao.findAllSQL();
+	 List<String> dataBaseGamesNames = new ArrayList<String>();
+	 for(Game game : dataBaseGames) {
+	 dataBaseGamesNames.add(game.getTitle());
+	 }
+	 ObjectMapper mapper = new ObjectMapper();
+	 mapper.enable(SerializationFeature.INDENT_OUTPUT);
+	 String json = "[]";
+	 try {
+	 json = mapper.writeValueAsString(dataBaseGamesNames);
+	 } catch (JsonProcessingException e) {
+	 e.printStackTrace();
+	 }
+	
+	 ResponseBuilder rb;
+	 if(json.isEmpty()) {
+	 rb = Response.serverError().status(404);
+	 }
+	 else {
+	 rb = Response.ok(json).status(200);
+	 }
+	 return rb.build();
+	 }
 
 	@PermitAll
 	@GET

@@ -53,7 +53,7 @@ public class GestionInscription {
 		client.setFirstName(prenom);
 		client.setBirthDate(birthDate);
 
-		// /* Initialisation du r茅sultat global de la validation. */
+		// /* Initialisation du résultat global de la validation. */
 		// if ( !erreurs.isEmpty() ) {
 		// resultat = "echec de l'inscription.";
 		// }/* else {

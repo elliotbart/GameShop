@@ -10,10 +10,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import beans.Client;
+import dao.ClientDao;
 
 public class GestionInscription {
 
-	private static final String CHAMP_EMAIL = "username";
+	private static final String CHAMP_EMAIL = "email";
 	private static final String CHAMP_PASS = "password";
 	private static final String CHAMP_NOM = "nom";
 	private static final String CHAMP_PRENOM = "prenom";
@@ -34,6 +35,7 @@ public class GestionInscription {
 
 		Client client = new Client();
 
+		
 		/* Validation du champ email. */
 		try {
 			validationEmail(email);
@@ -73,7 +75,6 @@ public class GestionInscription {
 		
 		try {
 			Date birth = getStringToDate(birthDate);
-			System.out.println(birth.toString());
 			checkBirthDate(birth);
 		} 
 		catch (Exception e) {
@@ -117,12 +118,11 @@ public class GestionInscription {
 	}
 
 	private static Date getStringToDate(String date) throws ParseException {
-		System.out.println(date);
+		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Date returnDate = formatter.parse(date);
 		
-		System.out.println(returnDate);
 		return returnDate;
 		
 	}
@@ -153,14 +153,21 @@ public class GestionInscription {
 		if (name == null) {
 			throw new Exception("Nom ou prénom vide");
 		}
-		else if (!name.matches("^[a-zA-Z]+$")){
-			throw new Exception("Les noms doivent contenir uniquement des caractères alphabétiques");
+		else if (!name.matches("^[a-zA-Zçàâéêèìôùû -]+$")){ 
+			throw new Exception("Caractère(s) interdit(s) dans le nom ou le prénom");
 		}
 	}
 	
-	private void validationEmail( String email ) throws Exception {
-        if ( email != null && !email.matches( "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)" ) ) {
-            throw new Exception( "Merci de saisir une adresse mail valide." );
+	private void validationEmail(String email) throws Exception {
+        
+        if (email == null){
+        	throw new Exception("Merci d'entrer votre email");
+        }
+        else if (!email.matches( "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)" )) {
+            throw new Exception( "Merci de saisir une adresse mail valide.");
+        }
+        else if (ClientDao.findSQL(email) != null){
+        	throw new Exception("Il existe déjà un utilisateur avec cet email...");
         }
     }
 

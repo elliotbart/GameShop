@@ -12,10 +12,13 @@
 	<br />
 	
 	<br />
-	<a href="Connection">Connection</a>
+	<a href="connexion">Connexion</a>
 
 	<br />
-	<a href="Inscription">S'inscrire</a>
+	<a href="deconnexion">Se déconnecter</a>
+	
+	<br />
+	<a href="inscription">S'inscrire</a>
 	
 	<br /> 
 	<a href="VoirPanier">Panier</a>

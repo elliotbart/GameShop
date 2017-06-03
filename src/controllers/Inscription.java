@@ -16,12 +16,14 @@ import dao.ClientDao;
 /**
  * Servlet implementation class inscription
  */
-@WebServlet(name = "Inscription", urlPatterns = "/Inscription")
+@WebServlet("/inscription")
 public class Inscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private static final String ATT_INSCRIPTION = "inscription";
 	private static final String ATT_CLIENT = "client";
+	public static final String VUE = "/inscription.jsp";
+
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -36,7 +38,8 @@ public class Inscription extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.getServletContext().getRequestDispatcher( "/inscription.jsp" ).forward( request, response );
+		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		
     }
 	
 
@@ -72,7 +75,7 @@ public class Inscription extends HttpServlet {
 		 request.setAttribute(ATT_INSCRIPTION, gestionInscription);
 		 request.setAttribute(ATT_CLIENT, client);
 		 
-		 this.getServletContext().getRequestDispatcher("/inscription.jsp").forward(request, response);
+		 this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 		
 	}
 

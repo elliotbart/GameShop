@@ -18,9 +18,9 @@
 
     <body>
 
-       <form method="post" action="Inscription">
+       <form method="post" action="inscription">
 		<label for="Email">E-mail :</label>
-		<input type="text" name="email" id="email1" value = "<c:out value="${client.email}"/>"/>
+		<input type="email" name="email" id="email1" value = "<c:out value="${client.email}"/>"/>
 		<span class="erreur">${inscription.erreurs['email']}</span>
 		<br />
 		<label for="Password">Mot de passe :</label>

@@ -51,7 +51,7 @@ public class Inscription extends HttpServlet {
 
         /* Traitement de la requête et récupération du bean en résultant */
 		//encoding treatment
-		request.setCharacterEncoding("UTF-8");
+		//request.setCharacterEncoding("UTF-8");
 		
         Client client = null;
 		client = gestionInscription.getClient(request);

@@ -14,22 +14,36 @@ public class GestionConnexion extends AbstractGestion{
 
 		Client client = new Client();
 
-		/* Validation email. */
+		/* Validation email correct */
 		try {
 			validationEmail(email);
 		} catch (Exception e) {
-			setErreur(CHAMP_EMAIL, e.getMessage());
+			erreurs.put(CHAMP_EMAIL, e.getMessage());
 		}
 		client.setEmail(email);
 
+		/* Check existing client */
+		try {
+			checkNonExistingClient(email);
+		} catch (Exception e) {
+			erreurs.put(CHAMP_EMAIL, e.getMessage());
+		}
+		
 		/* Validation mot de passe. */
 		try {
 			validationPassword(motDePasse);
 		} catch (Exception e) {
-			setErreur(CHAMP_PASS, e.getMessage());
+			erreurs.put(CHAMP_PASS, e.getMessage());
 		}
 		client.setPassword(motDePasse);
-
+		
+		try {
+			checkGoodPassword(motDePasse, email);
+		}
+		catch (Exception e){
+			erreurs.put(CHAMP_PASS, e.getMessage());
+		}
+		
 		/* Initialisation du résultat. */
 		if ( erreurs.isEmpty() ) {
 			resultat = "Succès de la connexion.";

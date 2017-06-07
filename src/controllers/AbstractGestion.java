@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import beans.Client;
 import dao.ClientDao;
 
 public class AbstractGestion {
@@ -112,6 +113,19 @@ public class AbstractGestion {
 			throw new Exception("Il existe déjà un utilisateur avec cet email...");
 		}
 	}
+	
+	protected void checkNonExistingClient(String email) throws Exception {
+        
+		if (ClientDao.findSQL(email) == null){
+			throw new Exception("Vous n'êtes pas encore inscrit! Rendez vous sur l'<a href='inscription'>inscription</a>");
+		}
+	}
+	
+	protected void checkGoodPassword(String password, String email) throws Exception {
+		Client client = ClientDao.findSQL(email);
+		if (!client.getPassword().equals(password))
+			throw new Exception("Le mot de passe est incorrect !");
+	}
 
 	
 	public String getResultat() {
@@ -128,12 +142,6 @@ public class AbstractGestion {
 
 	
 
-	/*
-	 * Ajoute un message correspondant au champ spécifié à la map des erreurs.
-	 */
-	protected void setErreur( String champ, String message ) {
-		erreurs.put( champ, message );
-	}
 
 	
 

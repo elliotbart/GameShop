@@ -51,10 +51,22 @@
 		<input type="submit" value="Valider" />
 	</form>
 	
+<<<<<<< HEAD
 	 <p class="${empty inscription.erreurs ? 'succes' : 'erreur'}">${inscription.resultat}</p>
 	 
 	 
      
+=======
+	 <p class="${empty form.hasErrorOccured() ? 'succes' : 'erreur'}">${form.resultat}</p>
+	 
+	 
+     <c:if test="${empty form.hasErrorOccured()}">
+
+        <!-- <p >Sucess de l'inscription. </p> -->
+
+    </c:if>
+
+>>>>>>> 1a74711ed48ee7c21d6adf5cf7fb3c56f1493853
     </body>
 
 </html>

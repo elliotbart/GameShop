@@ -46,10 +46,11 @@ public class Inscription extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+				
 		GestionInscription gestionInscription = new GestionInscription();
 
-        /* Traitement de la requête et récupération du bean en résultant */
+        // Traitement de la requete et recuperation du bean en r�sultat
 		//encoding treatment
 		//request.setCharacterEncoding("UTF-8");
 		
@@ -63,19 +64,20 @@ public class Inscription extends HttpServlet {
 			 int id_cart = CartDao.findLastCart();
 			 client.setCart(id_cart);
 			 if(ClientDao.insertSQL(client) > 0){
-				 gestionInscription.setResultat("Succès de l'inscription.");
+					 gestionInscription.setResultat("Inscription has succeeded");
 			 }
 			 else{
 				 CartDao.deleteCart(id_cart);
-				 gestionInscription.setResultat("Echec de l'inscription.");
+					 gestionInscription.setResultat("Inscription has failer");
 			 }	 			 
 		 } 
 		 //***********partie a mettre dans un webservice d'inscription ??**********
+				 gestionInscription.setResultat("A user with this email already exists");
 		 
 		 request.setAttribute(ATT_INSCRIPTION, gestionInscription);
 		 request.setAttribute(ATT_CLIENT, client);
 		 
-		 this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		 request.getRequestDispatcher("/inscription.jsp").forward(request, response);
 		
 	}
 

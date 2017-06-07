@@ -7,14 +7,20 @@
 	</session-config>
   
   
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+  <!--
+  <servlet>
+    <servlet-name>Inscription</servlet-name>
+    <servlet-class>controllers.Inscription</servlet-class>
+    <servlet-name>GestionGames</servlet-name>
+    <servlet-class>controllers.GestionGames</servlet-class>
+  </servlet>
+  <servlet-mapping>
     <welcome-file>accueil.jsp</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+    <url-pattern>/VideoGames</url-pattern>
+    <servlet-name>Inscription</servlet-name>
+    <url-pattern>/Inscription</url-pattern>
+  </servlet-mapping>
+  
   
  
 

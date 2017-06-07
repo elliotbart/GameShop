@@ -25,6 +25,7 @@ public class GameDao {
 	public static final String GAME_TITLE = "pk_title";
 	public static final String GAME_CONSOLE = "fk_console";
 	public static final String GAME_PRICE = "price";
+	public static final String GAME_DESCRIPTION = "description";
 	
 	
 	public static final String GAME_TYPE_TYPE = "fk_type";
@@ -77,13 +78,13 @@ public class GameDao {
 			connection = ConnexionBDD.getInstance().getConnection();
 			// or Class.forName(com.mysql.jdbc.Driver.class.getName());
 
-			String requeteSQL = "SELECT " + GAME_TITLE + "," + GAME_CONSOLE + "," + GAME_PRICE + " FROM " + GAME_TABLE;
+			String requeteSQL = "SELECT " + "* FROM " + GAME_TABLE;
 			PreparedStatement ps = connection.prepareStatement(requeteSQL);
 
 			ResultSet resultSet = ps.executeQuery();
 			while (resultSet.next()) {
 				dataBaseGames.add(new Game(resultSet.getString(GAME_TITLE), resultSet.getString(GAME_CONSOLE),
-						resultSet.getDouble(GAME_PRICE)));
+						resultSet.getDouble(GAME_PRICE), resultSet.getString(GAME_DESCRIPTION)));
 			}
 			resultSet.close();
 			ConnexionBDD.getInstance().closeConnection();
@@ -108,7 +109,7 @@ public class GameDao {
 			ResultSet resultSet = ps.executeQuery();
 			while (resultSet.next()) {
 				game = new Game(resultSet.getString(GAME_TITLE), resultSet.getString(GAME_CONSOLE),
-						resultSet.getDouble(GAME_PRICE));
+						resultSet.getDouble(GAME_PRICE), resultSet.getString(GAME_DESCRIPTION));
 			}
 			resultSet.close();
 			ConnexionBDD.getInstance().closeConnection();
@@ -119,7 +120,6 @@ public class GameDao {
 	}
 	
 	public static Type findGameTypeSQL(String name) {
-		Game game = null;
 		Type type = null;
 		Connection connection = null;
 		try {

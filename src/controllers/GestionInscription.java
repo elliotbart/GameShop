@@ -1,6 +1,5 @@
 package controllers;
 
-import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
 import beans.Client;
@@ -49,7 +48,7 @@ public class GestionInscription extends AbstractGestion{
 		
 		try {
 			checkNames(nom);
-		}
+	}
 		catch (Exception e) {
 			erreurs.put(CHAMP_NOM, e.getMessage());
 		}
@@ -71,6 +70,25 @@ public class GestionInscription extends AbstractGestion{
 			
 		}
 		client.setBirthDate(birthDate);
+	// private boolean checkDate(Date date) {
+	// Date currentDate = Calendar.getInstance().getTime();
+	// if(date.after(currentDate)) {
+	// return true;
+	// } else {
+	// return false;
+	// }
+	// }
+
+	// private static Date getValeurDate(HttpServletRequest request, String
+	// nomChamp) throws ParseException {
+	// String valeur = request.getParameter(nomChamp);
+	// if (valeur == null || valeur.trim().length() == 0) {
+	// return null;
+	// } else {
+	// Date valeur_date = new SimpleDateFormat("yyyy-MM-dd").parse(valeur);
+	// return valeur_date;
+	// }
+	// }
 
 		if (erreurs.isEmpty()){
 			resultat = "Succès de l'inscription.";

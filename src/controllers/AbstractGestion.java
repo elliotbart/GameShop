@@ -35,26 +35,31 @@ public class AbstractGestion {
 	}
 	
 	protected void checkBirthDate(Date date) throws Exception {
-		//Date currentDate = Calendar.getInstance().getTime();
 		
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.YEAR, -18);
 		Date majorityDate = cal.getTime();
-
 		if (majorityDate != null) {
 			if(date.after(majorityDate)) {
-				throw new Exception("Vous devez être majeur(e) pour vous inscrire... Vous pouvez quand même consulter le catalgue sans authentification :) ");
+				throw new Exception("Vous devez être majeur(e) pour vous inscrire... Vous pouvez quand même consulter le catalogue sans authentification :) ");
 			} 
 		}
-		else 
-			throw new Exception("Merci d'entrer une date de naissance"); // Impossible d'arriver ici avec JS google
 	}
 
-	protected static Date getStringToDate(String date) throws ParseException {
+	protected static Date getStringToDate(String date) throws Exception {
+		Date returnDate;
+		if (date==null)
+			throw new Exception("Merci d'entrer une date de naissance"); 
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		
-		Date returnDate = formatter.parse(date);
+		else {
+			try {
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				returnDate = formatter.parse(date);
+			}
+			catch (ParseException pe){
+				throw new Exception("Format de date invalide");
+			}
+		}
 		
 		return returnDate;
 		

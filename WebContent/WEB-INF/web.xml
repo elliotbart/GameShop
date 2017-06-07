@@ -7,16 +7,12 @@
 	</session-config>
   
   
-  <!--
+
   <servlet>
     <servlet-name>Inscription</servlet-name>
     <servlet-class>controllers.Inscription</servlet-class>
-    <servlet-name>GestionGames</servlet-name>
-    <servlet-class>controllers.GestionGames</servlet-class>
   </servlet>
   <servlet-mapping>
-    <welcome-file>accueil.jsp</welcome-file>
-    <url-pattern>/VideoGames</url-pattern>
     <servlet-name>Inscription</servlet-name>
     <url-pattern>/Inscription</url-pattern>
   </servlet-mapping>

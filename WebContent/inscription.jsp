@@ -42,7 +42,7 @@
 		
 		<br />
 		<label for="Date naissance">Date naissance (yyyy-mm-dd):</label>
-		<input type="date"  min="1900-01-01" name="date_naissance" id="date_naissance1" value = "<c:out value="${client.birthDate}"/>" />
+		<input type="date"  min="1900-01-01" max="2017-12-12" name="date_naissance" id="date_naissance1" value = "<c:out value="${client.birthDate}"/>" />
 				<span class="erreur">${inscription.erreurs['date_naissance']}</span>
 		
 		<br />
@@ -51,22 +51,11 @@
 		<input type="submit" value="Valider" />
 	</form>
 	
-<<<<<<< HEAD
 	 <p class="${empty inscription.erreurs ? 'succes' : 'erreur'}">${inscription.resultat}</p>
 	 
 	 
      
-=======
-	 <p class="${empty form.hasErrorOccured() ? 'succes' : 'erreur'}">${form.resultat}</p>
-	 
-	 
-     <c:if test="${empty form.hasErrorOccured()}">
 
-        <!-- <p >Sucess de l'inscription. </p> -->
-
-    </c:if>
-
->>>>>>> 1a74711ed48ee7c21d6adf5cf7fb3c56f1493853
     </body>
 
 </html>

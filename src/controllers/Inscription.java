@@ -50,7 +50,7 @@ public class Inscription extends HttpServlet {
 				
 		GestionInscription gestionInscription = new GestionInscription();
 
-        // Traitement de la requete et recuperation du bean en résultat
+        // Traitement de la requete et recuperation du bean en rï¿½sultat
 		//encoding treatment
 		//request.setCharacterEncoding("UTF-8");
 		
@@ -63,16 +63,12 @@ public class Inscription extends HttpServlet {
 			 CartDao.insertSQL(new Cart());
 			 int id_cart = CartDao.findLastCart();
 			 client.setCart(id_cart);
-			 if(ClientDao.insertSQL(client) > 0){
-					 gestionInscription.setResultat("Inscription has succeeded");
-			 }
-			 else{
+			 if(ClientDao.insertSQL(client) <= 0){
 				 CartDao.deleteCart(id_cart);
-					 gestionInscription.setResultat("Inscription has failer");
-			 }	 			 
+				 gestionInscription.setResultat("Echec de l'inscription Ã  cause du serveur");
+			 } 			 
 		 } 
 		 //***********partie a mettre dans un webservice d'inscription ??**********
-				 gestionInscription.setResultat("A user with this email already exists");
 		 
 		 request.setAttribute(ATT_INSCRIPTION, gestionInscription);
 		 request.setAttribute(ATT_CLIENT, client);

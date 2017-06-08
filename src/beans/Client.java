@@ -22,14 +22,13 @@ public class Client implements Serializable {
 	
 	private String birthDate;
 	
-	@Column(name="fk_cart")
-	private int cart;
+	private Cart cart;
 	
 	public Client() {
 		
 	}
 	
-	public Client(String email, String lastName, String firstName, String password, String birthDate, int cart) {
+	public Client(String email, String lastName, String firstName, String password, String birthDate, Cart cart) {
 		this.email = email;
 		this.lastName = lastName;
 		this.firstName = firstName;
@@ -78,11 +77,11 @@ public class Client implements Serializable {
 		this.birthDate = birthDate;
 	}
 
-	public int getCart() {
+	public Cart getCart() {
 		return cart;
 	}
 
-	public void setCart(int cart) {
+	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
 

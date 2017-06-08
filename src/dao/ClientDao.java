@@ -44,15 +44,14 @@ public class ClientDao {
 		try {
 			connection = ConnexionBDD.getInstance().getConnection();
 
-			String requeteSQL = "INSERT INTO CLIENT(pk_email, lastName, firstName, password, birthDate, fk_cart) "
-					+ "VALUES(?, ?, ?, ?, ?, ?)";
+			String requeteSQL = "INSERT INTO CLIENT(pk_email, lastName, firstName, password, birthDate) "
+					+ "VALUES(?, ?, ?, ?, ?)";
 			PreparedStatement ps = connection.prepareStatement(requeteSQL);
 			ps.setString(1, client.getEmail());
 			ps.setString(2, client.getLastName());
 			ps.setString(3, client.getFirstName());
 			ps.setString(4, client.getPassword());
 			ps.setString(5, client.getBirthDate());
-			ps.setInt(6, client.getCart());
 
 			result = ps.executeUpdate();
 
@@ -70,13 +69,12 @@ public class ClientDao {
 		try {
 			connection = ConnexionBDD.getInstance().getConnection();
 
-			String requeteSQL = "UPDATE utilisateurs SET lastName=?, firstName=?, password=?, birthDate=?, fk_cart=?, WHERE pk_email=?)";
+			String requeteSQL = "UPDATE utilisateurs SET lastName=?, firstName=?, password=?, birthDate=?, WHERE pk_email=?)";
 			PreparedStatement ps = connection.prepareStatement(requeteSQL);
 			ps.setString(1, client.getLastName());
 			ps.setString(2, client.getFirstName());
 			ps.setString(3, client.getPassword());
 			ps.setString(4, client.getBirthDate());
-			ps.setInt(5, client.getCart());
 			ps.setString(6, client.getEmail());
 
 			result = ps.executeUpdate();
@@ -122,7 +120,7 @@ public class ClientDao {
 			while (resultSet.next()) {
 				dataBaseClients.add(new Client(resultSet.getString("pk_email"), resultSet.getString("lastName"),
 						resultSet.getString("firstName"), resultSet.getString("password"),
-						resultSet.getString("birthDate"), resultSet.getInt("fk_cart")));
+						resultSet.getString("birthDate"), null));
 			}
 
 			resultSet.close();
@@ -150,7 +148,7 @@ public class ClientDao {
 				
 				client = new Client(email, resultSet.getString("lastName"),
 						resultSet.getString("firstName"), resultSet.getString("password"),
-						resultSet.getString("birthDate"), resultSet.getInt("fk_cart"));
+						resultSet.getString("birthDate"), null);
 			}
 
 			resultSet.close();
@@ -178,7 +176,7 @@ public class ClientDao {
 			while (resultSet.next()) {
 				dataBaseClients.add(new Client(resultSet.getString("pk_email"), resultSet.getString("lastName"),
 						resultSet.getString("firstName"), resultSet.getString("password"),
-						resultSet.getString("birthDate"), resultSet.getInt("fk_cart")));
+						resultSet.getString("birthDate"), null));
 			}
 
 			resultSet.close();

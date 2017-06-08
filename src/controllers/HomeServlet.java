@@ -14,9 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONException;
-import org.json.simple.parser.ParseException;
-
 import beans.Game;
 import utils.JsonParser;
 
@@ -41,10 +38,10 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String result = "";
 		try {
 			result = getGames();
+			//System.out.println(result);
 			List<Game>  listGame = JsonParser.getGames(result);
 			// TODO : requestdispatcher --> vers jsp de pierre
 			 response.getWriter().append(result);

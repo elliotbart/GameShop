@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
 	pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-	
-=======
->>>>>>> 1a74711ed48ee7c21d6adf5cf7fb3c56f1493853
+<%@ page import="java.util.List" %>
+<%@ page import="beans.Game" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -45,12 +44,11 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-	<%// ArrayList<Game> ListeGames = (ArrayList<Game>)session.getAttribute("listeGames");
-=======
-	<% ArrayList<Game> ListeGames = (ArrayList<Game>)session.getAttribute("listeGames");
->>>>>>> 1a74711ed48ee7c21d6adf5cf7fb3c56f1493853
-	int i; %>
+	<% List<Game> listeGames = (List<Game>)request.getAttribute("listGame"); 
+		for (Game g : listeGames){
+		 System.out.println(g.getTitle()); 
+	 }
+     	 int nb_games = listeGames.size();     %> 
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
@@ -118,24 +116,30 @@
                 </div>
 
                 <div class="row">
-                   <% for (java.util.Iterator<Game> it; it=listeGames.iterator(); it.hasNext()) {
-    				Game game = it.next(); %>
-    				
-                	<%-- <% for (i=0; i<ListeGames.size(); i++) { --%>
+                <c:set var="count" value="0" scope="page" />
+
+
+                <%   		for (int i = 0; i< listeGames.size(); ++i) { %>
+					
+					
+                
+                				
+		
     				<div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a href="#"><img class="card-img-top img-fluid" src="http://placehold.it/700x400" alt=""></a>
+                            <a href="#"><img class="card-img-top img-fluid" src="./pictures/${requestScope.listGame.get(count).getTitle()}.jpg" alt=""></a>
                             <div class="card-block">
-                                <h4 class="card-title"><a href="#">game.getTitle()</a></h4>
-                                <h5>$24.99</h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                                <h4 class="card-title"><a href="#"> ${requestScope.listGame.get(count).getTitle()}></a></h4>  
+                                <h5>${requestScope.listGame.get(count).getPrice()}</h5>                               
+                                <p class="card-text">${requestScope.listGame.get(count).getDescription()}</p>
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                             </div>
                         </div>
                     </div>
-					<%}%> 
+                    <c:set var="count" value="${count + 1}" scope="page"/>
+ 					<% }%>  
                 </div>
                 <!-- /.row -->
 

@@ -20,7 +20,7 @@ public class Connexion extends HttpServlet{
 	public static final String ATT_CONNEXION         = "connexion";
 	public static final String ATT_SESSION_CLIENT = "sessionClient";
 	public static final String VUE              = "/connexion.jsp";
-	public static final String HOME_SERVLET = "gestiongames";
+	public static final String HOME_SERVLET = "homeservlet";
 
 	public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 		/* Affichage de la page de connexion */

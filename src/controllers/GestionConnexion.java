@@ -46,16 +46,18 @@ public class GestionConnexion extends AbstractGestion{
 		}
 		
 		/* Initialisation du résultat. */
+		Client clientCompletion = ClientDao.findSQL(email);
 		if ( erreurs.isEmpty() ) {
+			client.setFirstName(clientCompletion.getFirstName());
+			client.setLastName(clientCompletion.getLastName());
+			client.setBirthDate(clientCompletion.getBirthDate());
 			resultat = "Succès de la connexion.";
 		} else {
 			resultat = "Échec de la connexion.";
 		}
 
-		Client clientCompletion = ClientDao.findSQL(email);
-		client.setFirstName(clientCompletion.getFirstName());
-		client.setLastName(clientCompletion.getLastName());
-		client.setBirthDate(clientCompletion.getBirthDate());
+		
+		
 		
 		return client;
 	}

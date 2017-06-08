@@ -58,15 +58,10 @@ public class Inscription extends HttpServlet {
 		client = gestionInscription.getClient(request);
 
 		if (gestionInscription.getErreurs().isEmpty()) {
-
+			
 			// *********** Partie a mettre dans un webservice d'inscription **********
 			
-			// CartDao.insertSQL(new Cart());
-			
-			// int id_cart = CartDao.findLastCart();
-			// client.setCart(id_cart);
 			if (ClientDao.insertSQL(client) <= 0) {
-				// CartDao.deleteCart(id_cart);
 				gestionInscription.setResultat("Echec de l'inscription à cause du serveur");
 			 } 
 			 else {

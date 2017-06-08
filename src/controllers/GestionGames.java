@@ -26,7 +26,7 @@ import utils.JsonParser;
 @WebServlet("/GestionGames")
 public class GestionGames extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String URL_GAME = "http://localhost:8080/SR03_Bartholme_Bathellier_Vancon_temp/rest/VideoGames/games";
+	private static final String URL_GAME = "http://localhost:8080/SR03_Bartholme_Bathellier_Vancon/rest/VideoGames/games";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,9 +44,12 @@ public class GestionGames extends HttpServlet {
 		String result = "";
 		try {
 			result = getGames();
-			List<Game> listGame = JsonParser.getGames(result);
+			System.out.println(result);
+			List<Game>  listGame = JsonParser.getGames(result);
 			// TODO : requestdispatcher --> vers jsp de pierre
-			//response.getWriter().append(result);
+			 response.getWriter().append(result);
+			 request.setAttribute("listGame", listGame);
+			 request.getRequestDispatcher("/homepage.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

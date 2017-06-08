@@ -23,15 +23,15 @@ import utils.JsonParser;
 /**
  * Servlet implementation class GestionGames
  */
-@WebServlet("/GestionGames")
-public class GestionGames extends HttpServlet {
+@WebServlet("/homeservlet")
+public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String URL_GAME = "http://localhost:8080/SR03_Bartholme_Bathellier_Vancon/rest/VideoGames/games";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GestionGames() {
+    public HomeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

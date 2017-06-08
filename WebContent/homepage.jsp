@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" 
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="beans.Game" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -54,20 +53,26 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="container">
-            <a class="navbar-brand" href="#">Vente en ligne de jeux vidéos</a>
-            <div class="collapse navbar-collapse" id="navbarExample">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Accueil<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Inscription</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+	<div class="container">
+		<a class="navbar-brand" href="#">Vente en ligne de jeux vidéos</a>
+		<div class="collapse navbar-collapse" id="navbarExample">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active"><a class="nav-link" href="homeservlet">Accueil<span
+						class="sr-only">(current)</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="inscription">Inscription</a>
+				</li>
+				<c:if test="${empty sessionScope.sessionClient}">
+					<li class="nav-item"><a class="nav-link" href="connexion">Connexion</a>
+				</li>
+				</c:if>				
+				<c:if test="${!empty sessionScope.sessionClient}">
+					<li class="nav-item"><a class="nav-link" href="deconnexion">Déconnexion</a>
+					</li>
+				</c:if>
+			</ul>
+		</div>
+	</div>
+	</nav>
 
     <!-- Page Content -->
     <div class="container">
@@ -120,18 +125,14 @@
 
 
                 <%   		for (int i = 0; i< listeGames.size(); ++i) { %>
-					
-					
-                
-                				
-		
+
     				<div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
                             <a href="#"><img class="card-img-top img-fluid" src="./pictures/${requestScope.listGame.get(count).getTitle()}.jpg" alt=""></a>
                             <div class="card-block">
                                 <h4 class="card-title"><a href="#"> ${requestScope.listGame.get(count).getTitle()}></a></h4>  
-                                <h5>${requestScope.listGame.get(count).getPrice()}</h5>                               
-                                <p class="card-text">${requestScope.listGame.get(count).getDescription()}</p>
+                                <h5>${requestScope.listGame.get(count).getPrice()} €</h5>                               
+                                <p class="card-text">${requestScope.listGame.get(count).getDescription()} €</p>
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -141,6 +142,7 @@
                     <c:set var="count" value="${count + 1}" scope="page"/>
  					<% }%>  
                 </div>
+                             
                 <!-- /.row -->
 
             </div>

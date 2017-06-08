@@ -23,7 +23,7 @@ public class Inscription extends HttpServlet {
 	private static final String ATT_INSCRIPTION = "inscription";
 	private static final String ATT_CLIENT = "client";
 	public static final String VUE = "/inscription.jsp";
-
+	public static final String HOME_SERVLET = "gestiongames";
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -66,7 +66,10 @@ public class Inscription extends HttpServlet {
 			 if(ClientDao.insertSQL(client) <= 0){
 				 CartDao.deleteCart(id_cart);
 				 gestionInscription.setResultat("Echec de l'inscription à cause du serveur");
-			 } 			 
+			 } 
+			 else {
+				 response.sendRedirect(HOME_SERVLET);
+			 }
 		 } 
 		 //***********partie a mettre dans un webservice d'inscription ??**********
 		 

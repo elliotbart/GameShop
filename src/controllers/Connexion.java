@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import beans.Client;
 import controllers.GestionConnexion;
 
-@WebServlet(name = "Connexion", urlPatterns = "/connexion")
+@WebServlet("/connexion")
 public class Connexion extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
@@ -20,6 +20,7 @@ public class Connexion extends HttpServlet{
 	public static final String ATT_CONNEXION         = "connexion";
 	public static final String ATT_SESSION_CLIENT = "sessionClient";
 	public static final String VUE              = "/connexion.jsp";
+	public static final String HOME_SERVLET = "gestiongames";
 
 	public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 		/* Affichage de la page de connexion */
@@ -36,21 +37,25 @@ public class Connexion extends HttpServlet{
 		/* Récupération de la session depuis la requête */
 		HttpSession session = request.getSession();
 
+		
+		/* Stockage du formulaire et du bean dans l'objet request */
+		request.setAttribute( ATT_CONNEXION, gestionConnexion );
+		request.setAttribute( ATT_CLIENT, client );
 		/**
 		 * Si aucune erreur de validation n'a eu lieu, alors ajout du bean
 		 * Utilisateur à la session, sinon suppression du bean de la session.
 		 */
 		if ( gestionConnexion.getErreurs().isEmpty() ) {
 			session.setAttribute( ATT_SESSION_CLIENT, client );
+			response.sendRedirect(HOME_SERVLET);
 		} else {
 			session.setAttribute( ATT_SESSION_CLIENT, null );
+			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 		}
 
-		/* Stockage du formulaire et du bean dans l'objet request */
-		request.setAttribute( ATT_CONNEXION, gestionConnexion );
-		request.setAttribute( ATT_CLIENT, client );
+		
 
-		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		
 	}
 }
 

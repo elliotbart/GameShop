@@ -3,6 +3,7 @@ package controllers;
 import javax.servlet.http.HttpServletRequest;
 
 import beans.Client;
+import dao.ClientDao;
 
 public class GestionConnexion extends AbstractGestion{
 
@@ -51,6 +52,11 @@ public class GestionConnexion extends AbstractGestion{
 			resultat = "Échec de la connexion.";
 		}
 
+		Client clientCompletion = ClientDao.findSQL(email);
+		client.setFirstName(clientCompletion.getFirstName());
+		client.setLastName(clientCompletion.getLastName());
+		client.setBirthDate(clientCompletion.getBirthDate());
+		
 		return client;
 	}
 

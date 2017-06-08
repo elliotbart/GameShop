@@ -55,7 +55,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="container">
-            <a class="navbar-brand" href="#">Vente en ligne de jeux vidéos</a>
+            <a class="navbar-brand" href="#">Vente en ligne de jeux vidéos </a>
+        
             <div class="collapse navbar-collapse" id="navbarExample">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
@@ -77,6 +78,9 @@
             <div class="col-lg-3">
 
                 <h1 class="my-4">EPV Games</h1>
+                <c:if test="${!empty sessionScope.sessionClient}">
+                    Bonjour ${sessionScope.sessionClient.firstName} ${sessionScope.sessionClient.lastName} !
+                </c:if>
                 <div class="list-group">
                     <a href="#" class="list-group-item">Jeux d'actions</a>
                     <a href="#" class="list-group-item">Jeux de sport</a>
@@ -130,7 +134,7 @@
                             <a href="#"><img class="card-img-top img-fluid" src="./pictures/${requestScope.listGame.get(count).getTitle()}.jpg" alt=""></a>
                             <div class="card-block">
                                 <h4 class="card-title"><a href="#"> ${requestScope.listGame.get(count).getTitle()}></a></h4>  
-                                <h5>${requestScope.listGame.get(count).getPrice()}</h5>                               
+                                <h5>${requestScope.listGame.get(count).getPrice()}€</h5>                               
                                 <p class="card-text">${requestScope.listGame.get(count).getDescription()}</p>
                             </div>
                             <div class="card-footer">

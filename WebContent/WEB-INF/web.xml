@@ -16,7 +16,30 @@
     <servlet-name>Inscription</servlet-name>
     <url-pattern>/Inscription</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <servlet-name>Connexion</servlet-name>
+    <servlet-class>controllers.Connexion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Connexion</servlet-name>
+    <url-pattern>/connexion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Deconnexion</servlet-name>
+    <servlet-class>controllers.Deconnexion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Deconnexion</servlet-name>
+    <url-pattern>/deconnexion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>GestionGames</servlet-name>
+    <servlet-class>controllers.GestionGames</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GestionGames</servlet-name>
+    <url-pattern>/gestiongames</url-pattern>
+  </servlet-mapping>
   
  
 

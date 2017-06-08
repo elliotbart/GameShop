@@ -23,6 +23,7 @@ import utils.JsonParser;
 /**
  * Servlet implementation class GestionGames
  */
+
 @WebServlet("/homeservlet")
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -44,7 +45,6 @@ public class HomeServlet extends HttpServlet {
 		String result = "";
 		try {
 			result = getGames();
-			System.out.println(result);
 			List<Game>  listGame = JsonParser.getGames(result);
 			// TODO : requestdispatcher --> vers jsp de pierre
 			 response.getWriter().append(result);

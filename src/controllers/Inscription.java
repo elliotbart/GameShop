@@ -73,7 +73,7 @@ public class Inscription extends HttpServlet {
 		 request.setAttribute(ATT_INSCRIPTION, gestionInscription);
 		 request.setAttribute(ATT_CLIENT, client);
 		 
-		 request.getRequestDispatcher("/inscription.jsp").forward(request, response);
+		 request.getRequestDispatcher(VUE).forward(request, response);
 		
 	}
 

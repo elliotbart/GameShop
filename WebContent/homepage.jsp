@@ -141,7 +141,7 @@
                             <div class="card-block">
 
 								<c:url value="cartservlet" var="myURL">
-									<c:param name="flag" value="add" /> --%>
+									<c:param name="flag" value="add" /> 
 									<c:param name="title" value="${requestScope.listGame.get(count).getTitle()}" />
 								</c:url>
 

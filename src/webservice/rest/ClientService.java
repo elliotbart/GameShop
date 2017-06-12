@@ -16,53 +16,56 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import beans.Game;
+import beans.Client;
 import beans.Type;
+import dao.ClientDao;
 import dao.GameDao;
 
-@Path("/VideoGames")
-// @Consumes(MediaType.APPLICATION_JSON)
-// @Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-public class VideoGames {
-
-	 @PermitAll
-	 @GET
-	 @Path("/games")
-	 public Response getVideoGames(@Context HttpRequest request) {
-	 List<Game> dataBaseGames = GameDao.findAllSQL();
-		// List<String> dataBaseGamesNames = new ArrayList<String>();
-		// for (Game game : dataBaseGames) {
-		// dataBaseGamesNames.add(game.getTitle());
-		// }
-	 ObjectMapper mapper = new ObjectMapper();
-	 mapper.enable(SerializationFeature.INDENT_OUTPUT);
-	 String json = "[]";
-	 try {
-			json = mapper.writeValueAsString(dataBaseGames);
-	 } catch (JsonProcessingException e) {
-	 e.printStackTrace();
-	 }
-	
-	 ResponseBuilder rb;
-		if (json.isEmpty()) {
-	 rb = Response.serverError().status(404);
-		} else {
-	 rb = Response.ok(json).status(200);
-		}
-	 return rb.build();
-	 }
+@Path("/Clients")
+public class ClientService {
 
 	@PermitAll
-	@GET
-	@Path("/games/{name}")
-	// @Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response getVideoGame(@PathParam("name") String name) {
-		Game game = GameDao.findSQL(name);
+	 @GET
+	 @Path("/clients")
+	 //public List<Client> getClients(@Context HttpRequest request) {
+	public Response getClients(@Context HttpRequest request) {
+		List<Client> dataBaseClients = ClientDao.findAllSQL();
+		//return dataBaseClients;
+
+
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 		String json = "[]";
 		try {
-			json = mapper.writeValueAsString(game);
+			json = mapper.writeValueAsString(dataBaseClients);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		ResponseBuilder rb;
+		if (json.isEmpty()) {
+			rb = Response.serverError().status(404);
+		} else {
+			rb = Response.ok(json).status(200);
+		}
+		return rb.build();
+	}
+
+	@PermitAll
+	@GET
+	@Path("/clients/{email}")
+	// @Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+	//public Client getClient(@PathParam("name") String email) {
+	public Response getClient(@PathParam("email") String email) {
+		Client client = ClientDao.findSQL(email);
+		//return client;
+
+
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.enable(SerializationFeature.INDENT_OUTPUT);
+		String json = "[]";
+		try {
+			json = mapper.writeValueAsString(client);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
@@ -73,6 +76,8 @@ public class VideoGames {
 			rb = Response.ok(json).status(200);
 		}
 		return rb.build();
+
+		
 	}
 
 	@PermitAll

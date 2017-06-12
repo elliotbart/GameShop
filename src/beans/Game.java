@@ -33,6 +33,27 @@ public class Game implements Serializable {
 		this.description = description;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+	    if (obj == null) {
+	        return false;
+	    }
+	    if (!Game.class.isAssignableFrom(obj.getClass())) {
+	        return false;
+	    }
+	    final Game other = (Game) obj;
+	    if ((this.title == null) ? (other.title != null) : !this.title.equals(other.title)) {
+	        return false;
+	    }
+	    if (this.console != other.console) {
+	        return false;
+	    }
+	    if (this.price != other.price) {
+	        return false;
+	    }
+	    return true;
+	}
+
 	public String getTitle() {
 		return title;
 	}

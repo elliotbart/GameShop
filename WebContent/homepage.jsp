@@ -72,6 +72,7 @@
 				<c:if test="${!empty sessionScope.sessionClient}">
 					<li class="nav-item"><a class="nav-link" href="panier"><img
 							class="card-img-top img-fluid" src="./pictures/panier-icone-7888-32.png" alt=""></a>
+
 					</li>
 				</c:if>
 			</ul>
@@ -138,7 +139,13 @@
                         <div class="card h-100">
                             <a href="#"><img class="card-img-top img-fluid" src="./pictures/${requestScope.listGame.get(count).getTitle()}.jpg" alt=""></a>
                             <div class="card-block">
-                                <h4 class="card-title"><a href="#"> ${requestScope.listGame.get(count).getTitle()}></a></h4>  
+
+								<c:url value="cartservlet" var="myURL">
+									<c:param name="flag" value="add" /> --%>
+									<c:param name="title" value="${requestScope.listGame.get(count).getTitle()}" />
+								</c:url>
+
+								<h4 class="card-title"><a href="${myURL}"> ${requestScope.listGame.get(count).getTitle()}></a></h4>  
 
                                 <h5>${requestScope.listGame.get(count).getPrice()}€</h5>                               
                                 <p class="card-text">${requestScope.listGame.get(count).getDescription()}</p>

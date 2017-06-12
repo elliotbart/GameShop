@@ -2,12 +2,6 @@
 
 
 
--- Cart
-
-CREATE TABLE CART (
-	pk_id INT AUTO_INCREMENT PRIMARY KEY
-);
-
 
 
 -- Console
@@ -58,17 +52,12 @@ CREATE TABLE CLIENT (
 	lastName VARCHAR(255) NOT NULL,
 	firstName VARCHAR(255) NOT NULL,
 	password VARCHAR(255) NOT NULL,
-	birthDate DATE NOT NULL,
-	fk_cart INT NOT NULL,
-	FOREIGN KEY (fk_cart) REFERENCES CART(pk_id)
+	birthDate DATE NOT NULL
 );
 
-INSERT INTO CART() VALUES();
-insert INTO CLIENT(pk_email, lastName, firstName, password, birthDate, fk_cart) VALUES("virgilew@gmail.com", "Vancon", "Virgile", "pwd", "1996-04-01", 1);
-INSERT INTO CART() VALUES();
-insert INTO CLIENT(pk_email, lastName, firstName, password, birthDate, fk_cart) VALUES("pbathell@etu.utc.fr", "Bathellier", "Pierre", "pwd", "1995-10-12", 2);
-INSERT INTO CART() VALUES();
-insert INTO CLIENT(pk_email, lastName, firstName, password, birthDate, fk_cart) VALUES("ebarthol@etu.utc.fr", "Okkis", "Elliot", "pwd", "1995-03-18", 3);
+insert INTO CLIENT(pk_email, lastName, firstName, password, birthDate) VALUES("virgilew@gmail.com", "Vancon", "Virgile", "pwd", "1996-04-01");
+insert INTO CLIENT(pk_email, lastName, firstName, password, birthDate) VALUES("pbathell@etu.utc.fr", "Bathellier", "Pierre", "pwd", "1995-10-12");
+insert INTO CLIENT(pk_email, lastName, firstName, password, birthDate) VALUES("ebarthol@etu.utc.fr", "Okkis", "Elliot", "pwd", "1995-03-18");
 
 
 
@@ -85,16 +74,4 @@ CREATE TABLE GAME_TYPE (
 INSERT INTO GAME_TYPE(fk_game, fk_type) VALUES("FIFA 17", "Sport");
 INSERT INTO GAME_TYPE(fk_game, fk_type) VALUES("NBA 2K17", "Sport");
 
-
-
--- Ligne_Cart
-
-CREATE TABLE LIGNE_CART (
-	fk_cart INT,
-	fk_game VARCHAR(255),
-	quantity INT NOT NULL,
-	FOREIGN KEY (fk_cart) REFERENCES CART(pk_id),
-	FOREIGN KEY (fk_game) REFERENCES GAME(pk_title),
-	PRIMARY KEY (fk_cart, fk_game)
-);
 

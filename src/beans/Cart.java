@@ -1,6 +1,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ public class Cart implements Serializable {
     @Column(name="pk_id")
 	private int id;
 	
+	private List<Game> games;
+	
 	public Cart() {
 		
 	}
@@ -28,4 +31,14 @@ public class Cart implements Serializable {
 		this.id = id;
 	}
 	
+	public List<Game> getGames(){
+		return games;
+	}
+	public void addGame(Game game){
+		games.add(game);
+	}
+	public void removeGame(Game game){
+		games.remove(game);
+	}
+	 
 }

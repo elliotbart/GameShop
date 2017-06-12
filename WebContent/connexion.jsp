@@ -95,7 +95,13 @@
 				<form method="post" action="connexion">
 					<fieldset>
 					<legend style="font-weight: 500;"> Connexion :</legend>
-						<label class="control-label col-lg-13" for="nom">Adresse email : </label> 
+
+                <c:if test="${!empty sessionScope.sessionClient}">  
+				Bonjour ${sessionScope.sessionClient.firstName} ${sessionScope.sessionClient.lastName} ! <br>
+				Votre inscription a été effectuée avec succès, bienvenue sur notre site !
+                </c:if>
+                <p>Vous pouvez vous connecter à votre espace client via ce formulaire.</p>
+						<label class="control-label col-lg-10" for="nom">Adresse email :</label> 
 						<div class="col-lg-13">
 						<input type="email"
 							id="email" name="email" value="<c:out value="${client.email}"/>"
@@ -118,14 +124,9 @@
 						<br />
 
 						<p class="${empty connexion.erreurs ? 'succes' : 'erreur'}">${connexion.resultat}</p>
-						
-
-						<%-- VÃ©rification de la prÃ©sence d'un objet utilisateur en session --%>
-						<c:if test="${!empty sessionScope.sessionClient}">
-							<%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
-							<p class="succes">Vous Ãªtes connectÃ©(e) avec l'adresse :
+                                
+                
 								${sessionScope.sessionClient.email}</p>
-						</c:if>
 						</div>
 					</fieldset>
 				</form>

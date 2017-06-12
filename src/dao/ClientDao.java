@@ -44,8 +44,8 @@ public class ClientDao {
 		try {
 			connection = ConnexionBDD.getInstance().getConnection();
 
-			String requeteSQL = "INSERT INTO CLIENT(pk_email, lastName, firstName, password, birthDate, fk_cart) "
-					+ "VALUES(?, ?, ?, ?, ?, ?)";
+			String requeteSQL = "INSERT INTO CLIENT(pk_email, lastName, firstName, password, birthDate) "
+					+ "VALUES(?, ?, ?, ?, ?)";
 			PreparedStatement ps = connection.prepareStatement(requeteSQL);
 			ps.setString(1, client.getEmail());
 			ps.setString(2, client.getLastName());
@@ -70,7 +70,7 @@ public class ClientDao {
 		try {
 			connection = ConnexionBDD.getInstance().getConnection();
 
-			String requeteSQL = "UPDATE utilisateurs SET lastName=?, firstName=?, password=?, birthDate=?, fk_cart=?, WHERE pk_email=?)";
+			String requeteSQL = "UPDATE utilisateurs SET lastName=?, firstName=?, password=?, birthDate=?, WHERE pk_email=?)";
 			PreparedStatement ps = connection.prepareStatement(requeteSQL);
 			ps.setString(1, client.getLastName());
 			ps.setString(2, client.getFirstName());

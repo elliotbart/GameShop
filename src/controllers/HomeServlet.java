@@ -28,7 +28,7 @@ import utils.JsonParser;
 @WebServlet("/homeservlet")
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String URL_GAME = "http://localhost:8080/SR03_Bartholme_Bathellier_Vancon/rest/VideoGames/games";
+	private static final String URL_GAME = "http://localhost:8080/SR03_Bartholme_Bathellier_Vancon_temp/rest/VideoGames/games";
 	private static final String URL_CLIENT = "http://localhost:8080/SR03_Bartholme_Bathellier_Vancon/rest/Clients/clients";
 	
 	/**
@@ -43,10 +43,10 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 				String result = "";
 				try {
 					result = getGames();
+			//System.out.println(result);
 					List<Game>  listGame = JsonParser.getGames(result);
 					// TODO : requestdispatcher --> vers jsp de pierre
 					 response.getWriter().append(result);

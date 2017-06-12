@@ -43,8 +43,8 @@
 		<a class="navbar-brand" href="#">Vente en ligne de jeux vidéos</a>
 		<div class="collapse navbar-collapse" id="navbarExample">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link" href="homeservlet">Accueil<span
-						class="sr-only">(current)</span></a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="homeservlet">Accueil<span class="sr-only">(current)</span></a></li>
 				<li class="nav-item"><a class="nav-link" href="inscription">Inscription</a>
 				</li>
 				<c:if test="${empty sessionScope.sessionClient}">
@@ -63,58 +63,84 @@
 	<!-- Page Content -->
 	<div class="container">
 
-		    <div class="row">
+		<div class="row">
 
 			<div class="col-lg-3">
 
 				<h1 class="my-4">EPV Games</h1>
 
 			</div>
-			</div>
-			<!-- /.col-lg-3 -->
+		</div>
+		<!-- /.col-lg-3 -->
 
-			
-			
-			
-			<div class="row">
-			<div class="col-lg-9">
 
-					<form method="post" action="inscription">
+
+
+		<div class="row">
+			<div class="col-lg-10">
+
+				<form method="post" action="inscription">
 					<fieldset>
-						<label for="Email">E-mail :</label> <input type="email"
-							name="email" id="email1" value="<c:out value="${client.email}"/>" />
-						<span class="erreur">${inscription.erreurs['email']}</span> <br />
-						<label for="Password">Mot de passe :</label> <input
-							type="password" name="password" id="password1" /> <span
-							class="erreur">${inscription.erreurs['password']}</span> <br />
-						<label for="CheckPassword">Re-taper le mot de passe :</label> <input
-							type="password" name="check" id="check" /> <span class="erreur">${inscription.erreurs['check']}</span>
-						<br /> <label for="Nom">Nom :</label> <input type="text"
-							name="nom" id="nom1" value="<c:out value="${client.lastName}"/>" />
-						<span class="erreur">${inscription.erreurs['nom']}</span> <br />
-						<label for="Prenom">Prénom :</label> <input type="text"
-							name="prenom" id="prenom1"
-							value="<c:out value="${client.firstName}"/>" /> <span
-							class="erreur">${inscription.erreurs['prenom']}</span> <br /> <label
-							for="Date naissance">Date naissance (yyyy-mm-dd):</label> <input
-							type="date" min="1900-01-01" max="2017-12-12"
-							name="date_naissance" id="date_naissance1"
-							value="<c:out value="${client.birthDate}"/>" /> <span
-							class="erreur">${inscription.erreurs['date_naissance']}</span> <br />
+						<legend style="font-weight: 500;"> Veuillez compléter les
+							informations suivantes :</legend>
+						<label class="control-label col-lg-10" for="Email">E-mail
+							:</label>
+						<div class="col-lg-10">
+							<input type="email" name="email" id="email1"
+								value="<c:out value="${client.email}"/>" /> <span
+								class="erreur">${inscription.erreurs['email']}</span> <br />
+						</div>
+						<label class="control-label col-lg-10" for="Password">Mot
+							de passe :</label>
+						<div class="col-lg-10">
+							<input type="password" name="password" id="password1" /> <span
+								class="erreur">${inscription.erreurs['password']}</span> <br />
+						</div>
+						<label class="control-label col-lg-10" for="CheckPassword">Re-taper
+							le mot de passe :</label>
+						<div class="col-lg-10">
+							<input type="password" name="check" id="check" /> <span
+								class="erreur">${inscription.erreurs['check']}</span> <br />
+						</div>
+						<label class="control-label col-lg-10" for="Nom">Nom :</label>
+						<div class="col-lg-10">
+							<input type="text" name="nom" id="nom1"
+								value="<c:out value="${client.lastName}"/>" /> <span
+								class="erreur">${inscription.erreurs['nom']}</span> <br />
+						</div>
+						<label class="control-label col-lg-10" for="Prenom">Prénom
+							:</label>
+						<div class="col-lg-10">
+							<input type="text" name="prenom" id="prenom1"
+								value="<c:out value="${client.firstName}"/>" /> <span
+								class="erreur">${inscription.erreurs['prenom']}</span> <br />
+						</div>
+						<label class="control-label col-lg-10" for="Date naissance">Date
+							naissance (yyyy-mm-dd):</label>
+						<div class="col-lg-10">
+							<input type="date" min="1900-01-01" max="2017-12-12"
+								name="date_naissance" id="date_naissance1"
+								value="<c:out value="${client.birthDate}"/>" /> <span
+								class="erreur">${inscription.erreurs['date_naissance']}</span> <br />
+						</div>
 						<%-- <input type="hidden" name="id_client" value="${uModif.id_client}"/> --%>
-						<input type="reset" value=" Reset " /> <input type="submit"
-							value="Valider" />
-						</fieldset>
-					</form>
-					<p class="${empty inscription.erreurs ? 'succes' : 'erreur'}">${inscription.resultat}</p>
+						<div class="col-lg-10"></div>
+						<div class="col-lg-10">
+							<input type="reset" value=" Reset " /> <input type="submit"
+								value="Valider" />
+							<p class="${empty inscription.erreurs ? 'succes' : 'erreur'}">${inscription.resultat}</p>
+						</div>
+					</fieldset>
+				</form>
+				
 
-
-				</div>
-
-				<!-- /.row -->
 
 			</div>
-			<!-- /.col-lg-9 -->
+
+			<!-- /.row -->
+
+		</div>
+		<!-- /.col-lg-9 -->
 
 
 	</div>
@@ -126,8 +152,7 @@
 		<p class="m-0 text-center text-white">Copyright &copy; Your
 			Website 2017</p>
 	</div>
-	<!-- /.container -->
-	 </footer>
+	<!-- /.container --> </footer>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="bootstrap_projet/vendor/jquery/jquery.min.js"></script>

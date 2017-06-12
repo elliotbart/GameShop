@@ -39,3 +39,4 @@ WebContent/WEB-INF/lib/httpmime-4.5.3.jar
 WebContent/WEB-INF/lib/jna-4.1.0.jar
 
 WebContent/WEB-INF/lib/jna-platform-4.1.0.jar
+src/controllers/Inscr.java

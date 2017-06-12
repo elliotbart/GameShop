@@ -24,7 +24,7 @@ public class Deconnexion extends HttpServlet {
 
 		/* Redirection vers le Site du Zéro ! */
 		
-		response.sendRedirect( HOME_SERVLET);
+		response.sendRedirect( HOME_SERVLET );
 	}
 }
 

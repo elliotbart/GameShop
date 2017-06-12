@@ -47,7 +47,7 @@
 		for (Game g : listeGames){
 		 System.out.println(g.getTitle()); 
 	 }
-     	 int nb_games = listeGames.size();     %> 
+     	 int nb_games = listeGames.size();     %>
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,6 +67,11 @@
 				</c:if>				
 				<c:if test="${!empty sessionScope.sessionClient}">
 					<li class="nav-item"><a class="nav-link" href="deconnexion">Déconnexion</a>
+					</li>
+				</c:if>
+				<c:if test="${!empty sessionScope.sessionClient}">
+					<li class="nav-item"><a class="nav-link" href="panier"><img
+							class="card-img-top img-fluid" src="./pictures/panier-icone-7888-32.png" alt=""></a>
 					</li>
 				</c:if>
 			</ul>

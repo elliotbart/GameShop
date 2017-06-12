@@ -26,6 +26,18 @@
 <!-- Custom styles for this template -->
 <link href="bootstrap_projet/css/shop-inscription.css" rel="stylesheet">
 
+	 <style>
+    @media (max-width: 576px) {
+        nav > .container {
+            width: 100%;
+        }
+    }
+    
+     	form {
+    		padding: 40px;
+    }
+    </style>
+
 
 </head>
 
@@ -43,16 +55,21 @@
 		<a class="navbar-brand" href="#">Vente en ligne de jeux vidéos</a>
 		<div class="collapse navbar-collapse" id="navbarExample">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link"
-					href="homeservlet">Accueil<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="homeservlet">Accueil</a></li>
 				<li class="nav-item"><a class="nav-link" href="inscription">Inscription</a>
 				</li>
 				<c:if test="${empty sessionScope.sessionClient}">
-					<li class="nav-item"><a class="nav-link" href="connexion">Connexion</a>
+					<li class="nav-item active"><a class="nav-link" href="connexion">Connexion<span class="sr-only">(current)</span></a>
 					</li>
 				</c:if>
 				<c:if test="${!empty sessionScope.sessionClient}">
 					<li class="nav-item"><a class="nav-link" href="deconnexion">Déconnexion</a>
+					</li>
+				</c:if>
+				<c:if test="${!empty sessionScope.sessionClient}">
+					<li class="nav-item"><a class="nav-link" href="panier"><img
+							class="card-img-top img-fluid" src="./pictures/panier.jpg" alt=""></a>
 					</li>
 				</c:if>
 			</ul>
@@ -70,33 +87,33 @@
 				<h1 class="my-4">EPV Games</h1>
 
 			</div>
-		</div>
 		<!-- /.col-lg-3 -->
 
 
-
-
-		<div class="row">
-			<div class="col-lg-10">
+			<div class="col-lg-13">
 
 				<form method="post" action="connexion">
 					<fieldset>
 					<legend style="font-weight: 500;"> Connexion :</legend>
-						<label class="control-label col-lg-10" for="nom">Adresse email </label> 
-						<div class="col-lg-10">
+						<label class="control-label col-lg-13" for="nom">Adresse email : </label> 
+						<div class="col-lg-13">
 						<input type="email"
 							id="email" name="email" value="<c:out value="${client.email}"/>"
 							size="20" maxlength="60" /> <span class="erreur">${connexion.erreurs['email']}</span>
 						<br />
 						</div>
-						 <label class="control-label col-lg-10" for="motdepasse">Mot de passe</label> 
-						<div class="col-lg-10">
+						<label class="control-label col-lg-13" for="motdepasse">Mot de passe : </label> 
+						<div class="col-lg-13">
 						<input
 							type="password" name="password" id="password1" value="" size="20"
 							maxlength="20" /> <span class="erreur">${connexion.erreurs['password']}</span>
-						<br /> 
+						<br/> 
 						</div>
-						<div class="col-lg-10">
+						<div class="col-lg-13">
+						<br/> 
+						</div>
+						<div class="col-lg-13">
+						
 						<input type="submit" value="Connexion" class="sansLabel" />
 						<br />
 

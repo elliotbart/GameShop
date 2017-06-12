@@ -28,7 +28,7 @@ import utils.JsonParser;
 @WebServlet("/homeservlet")
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String URL_GAME = "http://localhost:8080/SR03_Bartholme_Bathellier_Vancon_temp/rest/VideoGames/games";
+	private static final String URL_GAME = "http://localhost:8080/SR03_Bartholme_Bathellier_Vancon/rest/VideoGames/games";
 	private static final String URL_CLIENT = "http://localhost:8080/SR03_Bartholme_Bathellier_Vancon/rest/Clients/clients";
 	
 	/**

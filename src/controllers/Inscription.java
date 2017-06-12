@@ -1,6 +1,12 @@
 package controllers;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +29,8 @@ public class Inscription extends HttpServlet {
 	private static final String ATT_INSCRIPTION = "inscription";
 	private static final String ATT_CLIENT = "client";
 	public static final String VUE = "/inscription.jsp";
-	public static final String HOME_SERVLET = "gestiongames";
+	public static final String CONNEXION_SERVLET = "connexion";
+	
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -60,15 +67,15 @@ public class Inscription extends HttpServlet {
 		 if (gestionInscription.getErreurs().isEmpty()) { 
 			 
 			 //***********partie a mettre dans un webservice d'inscription ??**********
-			 CartDao.insertSQL(new Cart());
-			 int id_cart = CartDao.findLastCart();
-			 client.setCart(id_cart);
+//			 CartDao.insertSQL(new Cart());
+//			 int id_cart = CartDao.findLastCart();
+//			 client.setCart(id_cart);
 			 if(ClientDao.insertSQL(client) <= 0){
-				 CartDao.deleteCart(id_cart);
+//				 CartDao.deleteCart(id_cart);
 				 gestionInscription.setResultat("Echec de l'inscription à cause du serveur");
 			 } 
 			 else {
-				 response.sendRedirect(HOME_SERVLET);
+				 response.sendRedirect(CONNEXION_SERVLET);
 			 }
 		 } 
 		 //***********partie a mettre dans un webservice d'inscription ??**********

@@ -101,7 +101,7 @@ public class GameDao {
 		Connection connection = null;
 		try {
 			connection = ConnexionBDD.getInstance().getConnection();
-			String requeteSQL = "SELECT " + GAME_TITLE + "," + GAME_CONSOLE + "," + GAME_PRICE + " FROM " + GAME_TABLE
+			String requeteSQL = "SELECT " + GAME_TITLE + "," + GAME_CONSOLE + "," + GAME_PRICE + "," + GAME_DESCRIPTION + " FROM " + GAME_TABLE
 					+ " WHERE " + GAME_TITLE + "=?";
 			PreparedStatement ps = connection.prepareStatement(requeteSQL);
 			ps.setString(1, name);

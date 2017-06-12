@@ -52,7 +52,7 @@ public class ClientDao {
 			ps.setString(3, client.getFirstName());
 			ps.setString(4, client.getPassword());
 			ps.setString(5, client.getBirthDate());
-			ps.setInt(6, client.getCart());
+//			ps.setInt(6, client.getCart());
 
 			result = ps.executeUpdate();
 
@@ -76,7 +76,7 @@ public class ClientDao {
 			ps.setString(2, client.getFirstName());
 			ps.setString(3, client.getPassword());
 			ps.setString(4, client.getBirthDate());
-			ps.setInt(5, client.getCart());
+//			ps.setInt(5, client.getCart());
 			ps.setString(6, client.getEmail());
 
 			result = ps.executeUpdate();
@@ -122,7 +122,7 @@ public class ClientDao {
 			while (resultSet.next()) {
 				dataBaseClients.add(new Client(resultSet.getString("pk_email"), resultSet.getString("lastName"),
 						resultSet.getString("firstName"), resultSet.getString("password"),
-						resultSet.getString("birthDate"), resultSet.getInt("fk_cart")));
+						resultSet.getString("birthDate")/*, resultSet.getInt("fk_cart")*/));
 			}
 
 			resultSet.close();
@@ -150,7 +150,7 @@ public class ClientDao {
 				
 				client = new Client(email, resultSet.getString("lastName"),
 						resultSet.getString("firstName"), resultSet.getString("password"),
-						resultSet.getString("birthDate"), resultSet.getInt("fk_cart"));
+						resultSet.getString("birthDate")/*, resultSet.getInt("fk_cart")*/);
 			}
 
 			resultSet.close();
@@ -178,7 +178,7 @@ public class ClientDao {
 			while (resultSet.next()) {
 				dataBaseClients.add(new Client(resultSet.getString("pk_email"), resultSet.getString("lastName"),
 						resultSet.getString("firstName"), resultSet.getString("password"),
-						resultSet.getString("birthDate"), resultSet.getInt("fk_cart")));
+						resultSet.getString("birthDate")/*, resultSet.getInt("fk_cart")*/));
 			}
 
 			resultSet.close();

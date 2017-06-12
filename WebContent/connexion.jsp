@@ -11,7 +11,11 @@
         <form method="post" action="connexion">
             <fieldset>
                 <legend>Connexion</legend>
-                <p>Vous pouvez vous connecter via ce formulaire.</p>
+                <c:if test="${!empty sessionScope.sessionClient}">  
+				Bonjour ${sessionScope.sessionClient.firstName} ${sessionScope.sessionClient.lastName} ! <br>
+				Votre inscription a été effectuée avec succès, bienvenue sur notre site !
+                </c:if>
+                <p>Vous pouvez vous connecter à votre espace client via ce formulaire.</p>
 
                 <label for="nom">Adresse email </label>
                 <input type="email" id="email" name="email" value="<c:out value="${client.email}"/>" size="20" maxlength="60" />
@@ -27,13 +31,7 @@
                 <br />
                 
                 <p class="${empty connexion.erreurs ? 'succes' : 'erreur'}">${connexion.resultat}</p>
-                
-                
-                <%-- Vérification de la présence d'un objet utilisateur en session --%>
-                <c:if test="${!empty sessionScope.sessionClient}">
-                    <%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
-                    <p class="succes">Vous êtes connecté(e) avec l'adresse : ${sessionScope.sessionClient.email}</p>
-                </c:if>
+                                
             </fieldset>
         </form>
     </body>

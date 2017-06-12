@@ -1,10 +1,12 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import beans.Game;
 
 @SuppressWarnings("serial")
 @Entity
@@ -22,20 +24,22 @@ public class Client implements Serializable {
 	
 	private String birthDate;
 	
-	@Column(name="fk_cart")
-	private int cart;
+//	@Column(name="fk_cart")
+//	private int cart;
+	
+	private Cart cart;
 	
 	public Client() {
 		
 	}
 	
-	public Client(String email, String lastName, String firstName, String password, String birthDate, int cart) {
+	public Client(String email, String lastName, String firstName, String password, String birthDate) {
 		this.email = email;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.password = password;
 		this.birthDate = birthDate;
-		this.cart = cart;
+		this.cart = null;
 	}
 
 	public String getEmail() {
@@ -78,12 +82,14 @@ public class Client implements Serializable {
 		this.birthDate = birthDate;
 	}
 
-	public int getCart() {
+	public Cart getCart() {
 		return cart;
 	}
 
-	public void setCart(int cart) {
+	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
+	
+	
 
 }

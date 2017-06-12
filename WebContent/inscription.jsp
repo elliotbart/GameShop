@@ -25,6 +25,17 @@
 
 <!-- Custom styles for this template -->
 <link href="bootstrap_projet/css/shop-inscription.css" rel="stylesheet">
+	 <style>
+    @media (max-width: 576px) {
+        nav > .container {
+            width: 100%;
+        }
+    }
+    
+ 	form {
+    		padding: 40px;
+    }
+    </style>
 
 
 </head>
@@ -43,9 +54,9 @@
 		<a class="navbar-brand" href="#">Vente en ligne de jeux vidéos</a>
 		<div class="collapse navbar-collapse" id="navbarExample">
 			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" href="homeservlet">Accueil</a></li>
 				<li class="nav-item active"><a class="nav-link"
-					href="homeservlet">Accueil<span class="sr-only">(current)</span></a></li>
-				<li class="nav-item"><a class="nav-link" href="inscription">Inscription</a>
+					href="inscription">Inscription<span class="sr-only">(current)</span></a>
 				</li>
 				<c:if test="${empty sessionScope.sessionClient}">
 					<li class="nav-item"><a class="nav-link" href="connexion">Connexion</a>
@@ -53,6 +64,11 @@
 				</c:if>
 				<c:if test="${!empty sessionScope.sessionClient}">
 					<li class="nav-item"><a class="nav-link" href="deconnexion">Déconnexion</a>
+					</li>
+				</c:if>
+				<c:if test="${!empty sessionScope.sessionClient}">
+					<li class="nav-item"><a class="nav-link" href="panier"><img
+							class="card-img-top img-fluid" src="./pictures/panier.jpg" alt=""></a>
 					</li>
 				</c:if>
 			</ul>
@@ -70,62 +86,60 @@
 				<h1 class="my-4">EPV Games</h1>
 
 			</div>
-		</div>
 		<!-- /.col-lg-3 -->
 
 
 
 
-		<div class="row">
-			<div class="col-lg-10">
+			<div class="col-lg-13">
 
 				<form method="post" action="inscription">
 					<fieldset>
 						<legend style="font-weight: 500;"> Veuillez compléter les
 							informations suivantes :</legend>
-						<label class="control-label col-lg-10" for="Email">E-mail
+						<label class="control-label col-lg-13" for="Email">E-mail
 							:</label>
-						<div class="col-lg-10">
+						<div class="col-lg-13">
 							<input type="email" name="email" id="email1"
 								value="<c:out value="${client.email}"/>" /> <span
 								class="erreur">${inscription.erreurs['email']}</span> <br />
 						</div>
-						<label class="control-label col-lg-10" for="Password">Mot
+						<label class="control-label col-lg-13" for="Password">Mot
 							de passe :</label>
-						<div class="col-lg-10">
+						<div class="col-lg-13">
 							<input type="password" name="password" id="password1" /> <span
 								class="erreur">${inscription.erreurs['password']}</span> <br />
 						</div>
-						<label class="control-label col-lg-10" for="CheckPassword">Re-taper
+						<label class="control-label col-lg-13" for="CheckPassword">Re-taper
 							le mot de passe :</label>
-						<div class="col-lg-10">
+						<div class="col-lg-13">
 							<input type="password" name="check" id="check" /> <span
 								class="erreur">${inscription.erreurs['check']}</span> <br />
 						</div>
-						<label class="control-label col-lg-10" for="Nom">Nom :</label>
-						<div class="col-lg-10">
+						<label class="control-label col-lg-13" for="Nom">Nom :</label>
+						<div class="col-lg-13">
 							<input type="text" name="nom" id="nom1"
 								value="<c:out value="${client.lastName}"/>" /> <span
 								class="erreur">${inscription.erreurs['nom']}</span> <br />
 						</div>
-						<label class="control-label col-lg-10" for="Prenom">Prénom
+						<label class="control-label col-lg-13" for="Prenom">Prénom
 							:</label>
-						<div class="col-lg-10">
+						<div class="col-lg-13">
 							<input type="text" name="prenom" id="prenom1"
 								value="<c:out value="${client.firstName}"/>" /> <span
 								class="erreur">${inscription.erreurs['prenom']}</span> <br />
 						</div>
-						<label class="control-label col-lg-10" for="Date naissance">Date
-							naissance (yyyy-mm-dd):</label>
-						<div class="col-lg-10">
+						<label class="control-label col-lg-13" for="Date naissance">Date
+							naissance (yyyy-mm-dd) :</label>
+						<div class="col-lg-13">
 							<input type="date" min="1900-01-01" max="2017-12-12"
 								name="date_naissance" id="date_naissance1"
 								value="<c:out value="${client.birthDate}"/>" /> <span
 								class="erreur">${inscription.erreurs['date_naissance']}</span> <br />
 						</div>
 						<%-- <input type="hidden" name="id_client" value="${uModif.id_client}"/> --%>
-						<div class="col-lg-10"></div>
-						<div class="col-lg-10">
+						<div class="col-lg-13"><br /></div>
+						<div class="col-lg-13">
 							<input type="reset" value=" Reset " /> <input type="submit"
 								value="Valider" />
 							<p class="${empty inscription.erreurs ? 'succes' : 'erreur'}">${inscription.resultat}</p>

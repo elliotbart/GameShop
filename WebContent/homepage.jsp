@@ -71,7 +71,8 @@
 				</c:if>
 				<c:if test="${!empty sessionScope.sessionClient}">
 					<li class="nav-item"><a class="nav-link" href="panier"><img
-							class="card-img-top img-fluid" src="./pictures/panier.jpg" alt=""></a>
+							class="card-img-top img-fluid" src="./pictures/panier-icone-7888-32.png" alt=""></a>
+
 					</li>
 				</c:if>
 			</ul>

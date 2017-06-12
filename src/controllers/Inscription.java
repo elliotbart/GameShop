@@ -58,29 +58,28 @@ public class Inscription extends HttpServlet {
 		client = gestionInscription.getClient(request);
 
 		if (gestionInscription.getErreurs().isEmpty()) {
-			
+
 			// *********** Partie a mettre dans un webservice d'inscription **********
-			
+
 			if (ClientDao.insertSQL(client) <= 0) {
 				gestionInscription.setResultat("Echec de l'inscription à cause du serveur");
-			 } 
-			 else {
-				 response.sendRedirect(HOME_SERVLET);
-			 }
+			} 
+			else {
+				response.sendRedirect(HOME_SERVLET);
+			}
 		}
-		
+
 		// ***********partie a mettre dans un webservice d'inscription **********
 
 		request.setAttribute(ATT_INSCRIPTION, gestionInscription);
 		request.setAttribute(ATT_CLIENT, client);
 
-		 } 
-		 //***********partie a mettre dans un webservice d'inscription ??**********
-		 
-		 request.setAttribute(ATT_INSCRIPTION, gestionInscription);
-		 request.setAttribute(ATT_CLIENT, client);
-		 
-		 request.getRequestDispatcher(VUE).forward(request, response);
+		//***********partie a mettre dans un webservice d'inscription ??**********
+
+		request.setAttribute(ATT_INSCRIPTION, gestionInscription);
+		request.setAttribute(ATT_CLIENT, client);
+
+		request.getRequestDispatcher(VUE).forward(request, response);
 
 	}
 

@@ -98,10 +98,10 @@
 
                 <c:if test="${!empty sessionScope.sessionClient}">  
 				Bonjour ${sessionScope.sessionClient.firstName} ${sessionScope.sessionClient.lastName} ! <br>
-				Votre inscription a été effectuée avec succès, bienvenue sur notre site !
+				Votre inscription a Ã©tÃ© effectuÃ©e avec succÃ¨s, bienvenue sur notre site !
                 </c:if>
-                <p>Vous pouvez vous connecter à votre espace client via ce formulaire.</p>
-						<label class="control-label col-lg-10" for="nom">Adresse email :</label> 
+                <p>Vous pouvez vous connecter Ã  votre espace client via ce formulaire.</p>
+						<label class="control-label col-lg-13" for="nom">Adresse email :</label> 
 						<div class="col-lg-13">
 						<input type="email"
 							id="email" name="email" value="<c:out value="${client.email}"/>"

@@ -14,7 +14,7 @@ public class Deconnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	public static final String URL_REDIRECTION = "/homepage.jsp";
-	public static final String VUE = "gestiongames";
+	public static final String HOME_SERVLET = "homeservlet";
 
 
 	public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
@@ -24,7 +24,7 @@ public class Deconnexion extends HttpServlet {
 
 		/* Redirection vers le Site du Zéro ! */
 		
-		response.sendRedirect( VUE );
+		response.sendRedirect( HOME_SERVLET );
 	}
 }
 

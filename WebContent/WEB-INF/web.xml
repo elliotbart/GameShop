@@ -33,12 +33,12 @@
     <url-pattern>/deconnexion</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>GestionGames</servlet-name>
-    <servlet-class>controllers.GestionGames</servlet-class>
+    <servlet-name>HomeServlet</servlet-name>
+    <servlet-class>controllers.HomeServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>GestionGames</servlet-name>
-    <url-pattern>/gestiongames</url-pattern>
+    <servlet-name>HomeServlet</servlet-name>
+    <url-pattern>/homeservlet</url-pattern>
   </servlet-mapping>
   
  

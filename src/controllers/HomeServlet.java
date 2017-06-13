@@ -14,10 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONException;
-import org.json.simple.parser.ParseException;
-
-import beans.Client;
 import beans.Game;
 import utils.JsonGameParser;
 

@@ -35,7 +35,7 @@ public class JsonClientParser extends JsonParser {
 		String firstName = jsonObject.getString("firstName");
 		String password = jsonObject.getString("password");
 		String birthDate = jsonObject.getString("birthDate");
-		Client Client = new Client(email, lastName, firstName, password, birthDate, null);
+		Client Client = new Client(email, lastName, firstName, password, birthDate);
 		return Client;
 	}
 

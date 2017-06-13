@@ -83,7 +83,7 @@
 
 			<div class="col-lg-3">
 
-				<h1 class="my-4">EPV Games</h1>
+				<img class="card-img-top img-fluid" src="./pictures/logoEPVgames.png" alt="">
 
 			</div>
 		<!-- /.col-lg-3 -->

@@ -19,7 +19,7 @@ import org.json.simple.parser.ParseException;
 
 import beans.Client;
 import beans.Game;
-import utils.JsonParser;
+import utils.JsonGameParser;
 
 /**
  * Servlet implementation class GestionGames
@@ -47,7 +47,7 @@ public class HomeServlet extends HttpServlet {
 				try {
 					result = getGames();
 			//System.out.println(result);
-					List<Game>  listGame = JsonParser.getGames(result);
+			List<Game>  listGame = JsonGameParser.getGames(result);
 					// TODO : requestdispatcher --> vers jsp de pierre
 					 response.getWriter().append(result);
 					 request.setAttribute("listGame", listGame);

@@ -115,7 +115,7 @@ public class ClientDao {
 		try {
 			connection = ConnexionBDD.getInstance().getConnection();
 
-			String requetSQL = "SELECT pk_email, lastName, firstName, password, birthDate, fk_cart FROM CLIENT";
+			String requetSQL = "SELECT pk_email, lastName, firstName, password, birthDate FROM CLIENT";
 			PreparedStatement ps = connection.prepareStatement(requetSQL);
 			ResultSet resultSet = ps.executeQuery();
 
@@ -141,7 +141,7 @@ public class ClientDao {
 		try {
 			connection = ConnexionBDD.getInstance().getConnection();
 
-			String requeteSQL = "SELECT lastName, firstName, password, birthDate, fk_cart FROM CLIENT WHERE pk_email=?";
+			String requeteSQL = "SELECT lastName, firstName, password, birthDate FROM CLIENT WHERE pk_email=?";
 			PreparedStatement ps = connection.prepareStatement(requeteSQL);
 			ps.setString(1, email);
 			ResultSet resultSet = ps.executeQuery();
@@ -169,7 +169,7 @@ public class ClientDao {
 		try {
 			connection = ConnexionBDD.getInstance().getConnection();
 
-			String requetSQL = "SELECT pk_email, lastName, firstName, password, birthDate, fk_cart FROM CLIENT LIMIT ?,?";
+			String requetSQL = "SELECT pk_email, lastName, firstName, password, birthDate FROM CLIENT LIMIT ?,?";
 			PreparedStatement ps = connection.prepareStatement(requetSQL);
 			ps.setInt(1, start);
 			ps.setInt(2, nb);

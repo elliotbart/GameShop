@@ -16,29 +16,24 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import beans.Game;
-import beans.Type;
-import dao.GameDao;
+import beans.Client;
+import dao.ClientDao;
 
 @Path("/VideoGames")
 // @Consumes(MediaType.APPLICATION_JSON)
 // @Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-public class VideoGames {
+public class RestClient {
 
 	@PermitAll
 	@GET
-	@Path("/games")
-	public Response getVideoGames(@Context HttpRequest request) {
-		List<Game> dataBaseGames = GameDao.findAllSQL();
-		// List<String> dataBaseGamesNames = new ArrayList<String>();
-		// for (Game game : dataBaseGames) {
-		// dataBaseGamesNames.add(game.getTitle());
-		// }
+	@Path("/clients")
+	public Response getClients(@Context HttpRequest request) {
+		List<Client> dataBaseClients = ClientDao.findAllSQL();
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 		String json = "[]";
 		try {
-			json = mapper.writeValueAsString(dataBaseGames);
+			json = mapper.writeValueAsString(dataBaseClients);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
@@ -54,15 +49,15 @@ public class VideoGames {
 
 	@PermitAll
 	@GET
-	@Path("/games/{name}")
+	@Path("/clients/{id}")
 	// @Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response getVideoGame(@PathParam("name") String name) {
-		Game game = GameDao.findSQL(name);
+	public Response getVideoGame(@PathParam("id") String id) {
+		Client client = ClientDao.findSQL(id);
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 		String json = "[]";
 		try {
-			json = mapper.writeValueAsString(game);
+			json = mapper.writeValueAsString(client);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
@@ -74,29 +69,5 @@ public class VideoGames {
 		}
 		return rb.build();
 	}
-
-	@PermitAll
-	@GET
-	@Path("/games/{name}/type")
-	// @Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response getVideoGameType(@PathParam("name") String name) {
-		Type type = GameDao.findGameTypeSQL(name);
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.enable(SerializationFeature.INDENT_OUTPUT);
-		String json = "[]";
-		try {
-			json = mapper.writeValueAsString(type);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-
-		ResponseBuilder rb;
-		if (json.isEmpty()) {
-			rb = Response.serverError().status(404);
-		} else {
-			rb = Response.ok(json).status(200);
-		}
-		return rb.build();
-	}
-
+	
 }

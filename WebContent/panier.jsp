@@ -50,7 +50,7 @@ html, body {
 }
 
 .shopping-cart {
-	width: 650px;
+	width: 550px;
 	height: auto;
 	margin: 80px auto;
 	background: #FFFFFF;
@@ -223,6 +223,11 @@ button:focus, input:focus {
 	margin: auto;	
 }
 
+.logo {
+	margin-bottom: 305px;	
+}
+
+
 @media ( max-width : 800px) {
 	.shopping-cart {
 		width: 100%;
@@ -344,10 +349,12 @@ $('.plus-btn').on('click', function(e) {
 		<div class="row">
 
 			<div class="col-lg-3">
+			<div class="logo">
 
 				<img class="card-img-top img-fluid"
 					src="./pictures/logoEPVgames.png" alt="">
 
+			</div>
 			</div>
 			<!-- /.col-lg-3 -->
 
@@ -394,7 +401,7 @@ $('.plus-btn').on('click', function(e) {
 										: ${cart.getGames().get(i).getConsole()} </span>
 								</div>
 								<div class="price">
-									<div class="total-price">${cart.getGames().get(i).getPrice()}
+									<div class="total-price" align="right">${cart.getGames().get(i).getPrice()}
 										&euro;</div>
 								</div>
 							</div>

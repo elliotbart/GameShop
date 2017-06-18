@@ -1,5 +1,7 @@
 package controllers;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -42,7 +44,7 @@ public class AbstractGestion {
 		Date majorityDate = cal.getTime();
 		if (majorityDate != null) {
 			if(date.after(majorityDate)) {
-				throw new Exception("Vous devez être majeur(e) pour vous inscrire... Vous pouvez quand même consulter le catalogue sans authentification :) ");
+				throw new Exception("Vous devez être majeur(e) pour vous inscrire... Vous pouvez quand même consulter sans inscription :) ");
 			} 
 		}
 	}
@@ -123,7 +125,17 @@ public class AbstractGestion {
 	
 	protected void checkGoodPassword(String password, String email) throws Exception {
 		Client client = ClientDao.findSQL(email);
-		if (!client.getPassword().equals(password))
+		byte[] hash;
+		String pass = null;
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+			pass = new String(hash, StandardCharsets.UTF_8);
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		if (!client.getPassword().equals(pass))
 			throw new Exception("Le mot de passe est incorrect !");
 	}
 

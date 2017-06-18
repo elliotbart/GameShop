@@ -1,5 +1,7 @@
 package dao;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,7 +52,17 @@ public class ClientDao {
 			ps.setString(1, client.getEmail());
 			ps.setString(2, client.getLastName());
 			ps.setString(3, client.getFirstName());
-			ps.setString(4, client.getPassword());
+			byte[] hash;
+			String password=null;
+			try {
+				MessageDigest digest = MessageDigest.getInstance("SHA-256");
+				hash = digest.digest(client.getPassword().getBytes(StandardCharsets.UTF_8));
+				password = new String(hash, StandardCharsets.UTF_8);
+			}
+			catch(Exception e){
+				System.out.println(e.getMessage());
+			}
+			ps.setString(4, password);
 			ps.setString(5, client.getBirthDate());
 //			ps.setInt(6, client.getCart());
 

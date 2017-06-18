@@ -2,6 +2,7 @@ package webservice.rest;
 
 import java.util.List;
 
+import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -21,10 +22,11 @@ import beans.Type;
 import dao.ClientDao;
 import dao.GameDao;
 
+@DenyAll
 @Path("/Clients")
 public class ClientService {
 
-	@PermitAll
+	@DenyAll
 	 @GET
 	 @Path("/clients")
 	 //public List<Client> getClients(@Context HttpRequest request) {

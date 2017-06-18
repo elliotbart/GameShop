@@ -94,55 +94,55 @@
 
 
 
-			<div class="col-lg-13">
+			<div class="col-lg-9">
 
 				<form method="post" action="inscription">
 					<fieldset>
 						<legend style="font-weight: 500;"> Veuillez compléter les
 							informations suivantes :</legend>
-						<label class="control-label col-lg-13" for="Email">E-mail
+						<label class="control-label col-lg-9" for="Email">E-mail
 							:</label>
-						<div class="col-lg-13">
+						<div class="col-lg-9">
 							<input type="email" name="email" id="email1"
 								value="<c:out value="${client.email}"/>" /> <span
 								class="erreur">${inscription.erreurs['email']}</span> <br />
 						</div>
-						<label class="control-label col-lg-13" for="Password">Mot
+						<label class="control-label col-lg-9" for="Password">Mot
 							de passe :</label>
-						<div class="col-lg-13">
+						<div class="col-lg-9">
 							<input type="password" name="password" id="password1" /> <span
 								class="erreur">${inscription.erreurs['password']}</span> <br />
 						</div>
-						<label class="control-label col-lg-13" for="CheckPassword">Re-taper
+						<label class="control-label col-lg-9" for="CheckPassword">Re-taper
 							le mot de passe :</label>
-						<div class="col-lg-13">
+						<div class="col-lg-9">
 							<input type="password" name="check" id="check" /> <span
 								class="erreur">${inscription.erreurs['check']}</span> <br />
 						</div>
-						<label class="control-label col-lg-13" for="Nom">Nom :</label>
-						<div class="col-lg-13">
+						<label class="control-label col-lg-9" for="Nom">Nom :</label>
+						<div class="col-lg-9">
 							<input type="text" name="nom" id="nom1"
 								value="<c:out value="${client.lastName}"/>" /> <span
 								class="erreur">${inscription.erreurs['nom']}</span> <br />
 						</div>
-						<label class="control-label col-lg-13" for="Prenom">Prénom
+						<label class="control-label col-lg-9" for="Prenom">Prénom
 							:</label>
-						<div class="col-lg-13">
+						<div class="col-lg-9">
 							<input type="text" name="prenom" id="prenom1"
 								value="<c:out value="${client.firstName}"/>" /> <span
 								class="erreur">${inscription.erreurs['prenom']}</span> <br />
 						</div>
-						<label class="control-label col-lg-13" for="Date naissance">Date
+						<label class="control-label col-lg-9" for="Date naissance">Date
 							naissance (yyyy-mm-dd) :</label>
-						<div class="col-lg-13">
+						<div class="col-lg-9">
 							<input type="date" min="1900-01-01" max="2017-12-12"
 								name="date_naissance" id="date_naissance1"
 								value="<c:out value="${client.birthDate}"/>" /> <span
 								class="erreur">${inscription.erreurs['date_naissance']}</span> <br />
 						</div>
 						<%-- <input type="hidden" name="id_client" value="${uModif.id_client}"/> --%>
-						<div class="col-lg-13"><br /></div>
-						<div class="col-lg-13">
+						<div class="col-lg-9"><br /></div>
+						<div class="col-lg-9">
 							<input type="reset" value=" Reset " /> <input type="submit"
 								value="Valider" />
 							<p class="${empty inscription.erreurs ? 'succes' : 'erreur'}">${inscription.resultat}</p>

@@ -100,10 +100,12 @@
 					<legend style="font-weight: 500;"> Connexion :</legend>
 
                 <c:if test="${!empty sessionScope.sessionClient}">  
-				Bonjour ${sessionScope.sessionClient.firstName} ${sessionScope.sessionClient.lastName} ! <br>
-				Votre inscription a été effectuée avec succès, bienvenue sur notre site !
+				Bonjour ${sessionScope.sessionClient.firstName}, vous êtes déjà connecté et pouvez vous consulter les jeux. <br>
                 </c:if>
-                <p>Vous pouvez vous connecter à votre espace client via ce formulaire.</p>
+                <c:if test="${empty sessionScope.sessionClient}">  
+				<p>Vous pouvez vous connecter à votre espace client via ce formulaire.</p>
+                </c:if>
+                
 						<label class="control-label col-lg-13" for="nom">Adresse email :</label> 
 						<div class="col-lg-13">
 						<input type="email"

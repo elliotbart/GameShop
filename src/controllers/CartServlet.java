@@ -22,8 +22,10 @@ public class CartServlet extends HttpServlet {
 	public static final String ATT_SESSION_CLIENT = "sessionClient";
 	public static final String HOME_SERVLET = "homeservlet";
 	public static final String ATT_GAME_TITLE = "title"; 
+	public static final String ATT_GAME_CONSOLE = "console";
+//	public static final String ATT_CLIENT = "client";
 	public static final String ATT_FLAG = "flag";
-	public static final String VUE = "panier.jsp";
+	public static final String VUE = "/panier.jsp";
 	
 	
 	
@@ -48,26 +50,30 @@ public class CartServlet extends HttpServlet {
 		if (client == null){
 			response.sendRedirect(HOME_SERVLET);
 		}
-		else if (flag == "add"){
+		else if (flag.equals("add")){
 			String title = request.getParameter(ATT_GAME_TITLE);
-			Game game = GameDao.findSQL(title);
+			String console = request.getParameter(ATT_GAME_CONSOLE);
+			Game game = GameDao.findSQL(title, console);
 			Cart cart = client.getCart();
 			cart.addGame(game);
 			client.setCart(cart);
+//			request.setAttribute(ATT_CLIENT, client);
 			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 		}
-		else if (flag == "del"){
+		else if (flag.equals("del")){
 			String title = request.getParameter(ATT_GAME_TITLE);
-			Game game = GameDao.findSQL(title);
+			String console = request.getParameter(ATT_GAME_CONSOLE);
+			Game game = GameDao.findSQL(title, console);
 			Cart cart = client.getCart();
 			cart.removeGame(game);
 			client.setCart(cart);
 			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 		}
-		else if (flag == "view"){
-			String title = request.getParameter(ATT_GAME_TITLE);
-			Game game = GameDao.findSQL(title);
-			Cart cart = client.getCart();
+		else if (flag.equals("view")){
+//			String title = request.getParameter(ATT_GAME_TITLE);
+//			String console = request.getParameter(ATT_GAME_CONSOLE);
+//			Game game = GameDao.findSQL(title, console);
+//			Cart cart = client.getCart();
 			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 		}
 	}

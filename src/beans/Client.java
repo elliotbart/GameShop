@@ -28,7 +28,7 @@ public class Client implements Serializable {
 	private Cart cart;
 	
 	public Client() {
-		
+		this.cart = new Cart();
 	}
 	
 	public Client(String email, String lastName, String firstName, String password, String birthDate) {
@@ -37,7 +37,7 @@ public class Client implements Serializable {
 		this.firstName = firstName;
 		this.password = password;
 		this.birthDate = birthDate;
-		this.cart = null;
+		this.cart = new Cart();
 	}
 
 	public String getEmail() {

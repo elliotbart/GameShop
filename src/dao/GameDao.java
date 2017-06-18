@@ -95,16 +95,17 @@ public class GameDao {
 		return dataBaseGames;
 	}
 
-	public static Game findSQL(String name) {
+	public static Game findSQL(String name, String console) {
 		Game game = null;
 
 		Connection connection = null;
 		try {
 			connection = ConnexionBDD.getInstance().getConnection();
 			String requeteSQL = "SELECT " + GAME_TITLE + "," + GAME_CONSOLE + "," + GAME_PRICE + "," + GAME_DESCRIPTION + " FROM " + GAME_TABLE
-					+ " WHERE " + GAME_TITLE + "=?";
+					+ " WHERE " + GAME_TITLE + "=?"+ " AND " + GAME_CONSOLE + "=?";
 			PreparedStatement ps = connection.prepareStatement(requeteSQL);
 			ps.setString(1, name);
+			ps.setString(2, console);
 
 			ResultSet resultSet = ps.executeQuery();
 			while (resultSet.next()) {

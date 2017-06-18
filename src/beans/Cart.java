@@ -1,6 +1,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -20,7 +21,7 @@ public class Cart implements Serializable {
 	private List<Game> games;
 	
 	public Cart() {
-		
+		this.games = new ArrayList<Game>();
 	}
 
 	public int getId() {
@@ -38,7 +39,18 @@ public class Cart implements Serializable {
 		games.add(game);
 	}
 	public void removeGame(Game game){
-		games.remove(game);
+		int index = -1;
+		for(int i=0; i<this.games.size(); i++) 
+		{
+			if (this.games.get(i).getTitle().equals(game.getTitle()) && this.games.get(i).getConsole().equals(game.getConsole()))
+			{
+				index = i;
+			}
+		}
+		if(index != -1)
+		{
+			games.remove(index);
+		}
 	}
 	 
 }

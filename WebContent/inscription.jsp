@@ -63,13 +63,16 @@
 					</li>
 				</c:if>
 				<c:if test="${!empty sessionScope.sessionClient}">
-					<li class="nav-item"><a class="nav-link" href="deconnexion">Déconnexion</a>
+					<li class="nav-item"><a class="nav-link" href="deconnexion">D&eacute;connexion</a>
 					</li>
 				</c:if>
+				<c:url value="cartservlet" var="URLview">
+					<c:param name="flag" value="view" />
+				</c:url>
 				<c:if test="${!empty sessionScope.sessionClient}">
-					<li class="nav-item"><a class="nav-link" href="panier"><img
-							class="card-img-top img-fluid" src="./pictures/panier.jpg" alt=""></a>
-					</li>
+					<li class="nav-item"><a class="nav-link" href="${URLview}"><img
+							class="card-img-top img-fluid"
+							src="./pictures/panier-icone-7888-32.png" alt=""></a></li>
 				</c:if>
 			</ul>
 		</div>

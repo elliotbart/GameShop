@@ -54,10 +54,10 @@ public class VideoGames {
 
 	@PermitAll
 	@GET
-	@Path("/games/{name}")
+	@Path("/games/{name}/{console}")
 	// @Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-	public Response getVideoGame(@PathParam("name") String name) {
-		Game game = GameDao.findSQL(name);
+	public Response getVideoGame(@PathParam("name") String name, @PathParam("console") String console) {
+		Game game = GameDao.findSQL(name, console);
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 		String json = "[]";

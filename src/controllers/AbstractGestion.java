@@ -130,7 +130,8 @@ public class AbstractGestion {
 		try {
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");
 			hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-			pass = new String(hash, StandardCharsets.UTF_8);
+			pass = byteArrayToHexString(hash);
+			//pass = new String(hash, StandardCharsets.UTF_8);
 		}
 		catch(Exception e){
 			System.out.println(e.getMessage());
@@ -153,7 +154,14 @@ public class AbstractGestion {
 	}
 
 	
-
+	public static String byteArrayToHexString(byte[] b) {
+		  String result = "";
+		  for (int i=0; i < b.length; i++) {
+		    result +=
+		          Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
+		  }
+		  return result;
+		}
 
 	
 

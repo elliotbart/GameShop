@@ -104,7 +104,7 @@
                 </c:if>
                 <c:if test="${empty sessionScope.sessionClient}">  
 				<p>Vous pouvez vous connecter à votre espace client via ce formulaire.</p>
-                </c:if>
+                
                 
 						<label class="control-label col-lg-13" for="nom">Adresse email :</label> 
 						<div class="col-lg-13">
@@ -131,7 +131,8 @@
 						<p class="${empty connexion.erreurs ? 'succes' : 'erreur'}">${connexion.resultat}</p>
                                 
                 
-								${sessionScope.sessionClient.email}</p>
+						</p>
+						</c:if>
 						</div>
 					</fieldset>
 				</form>

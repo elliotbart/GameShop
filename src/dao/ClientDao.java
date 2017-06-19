@@ -15,6 +15,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
 
 import beans.Client;
+import controllers.AbstractGestion;
 
 @SuppressWarnings("deprecation")
 public class ClientDao {
@@ -57,7 +58,8 @@ public class ClientDao {
 			try {
 				MessageDigest digest = MessageDigest.getInstance("SHA-256");
 				hash = digest.digest(client.getPassword().getBytes(StandardCharsets.UTF_8));
-				password = new String(hash, StandardCharsets.UTF_8);
+				password = AbstractGestion.byteArrayToHexString(hash);
+				//password = new String(hash, StandardCharsets.UTF_8);
 			}
 			catch(Exception e){
 				System.out.println(e.getMessage());
